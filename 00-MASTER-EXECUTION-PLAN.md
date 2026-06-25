@@ -230,6 +230,17 @@ Full rationale for this structure was established in our architecture discussion
 
 ---
 
+## Polish / Deferred Enhancements
+
+Items that are genuinely worth doing but deliberately deferred to a better-timed moment in the build — tracked here so they aren't lost. Revisit this list at the start of any session when there's bandwidth beyond the core build sequence.
+
+| Item | Why deferred | Best time to revisit |
+|---|---|---|
+| **Visual architecture diagram** (SVG/PNG of the 7-layer Runtime Stack, for `docs/architecture/`) | The current text-based diagram is sufficient for active build work; a polished visual is most worth the effort once the stack is partially or fully built, so the diagram reflects reality rather than aspiration | Once Phase 1 (Core Infrastructure) is substantially complete |
+| **Docs site** (e.g., `mkdocs` + GitHub Pages, turning `docs/` into a browsable site) | Premature with only 3-7 reference cards; pays off once specs, reference cards, and architecture docs are numerous enough that flat markdown browsing on GitHub becomes unwieldy | Once all 7 reference cards + Phase 0 architecture docs are approved |
+
+---
+
 ## Progress Log
 
 *(Append entries here after each working session — newest at top.)*
