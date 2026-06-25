@@ -111,8 +111,8 @@ Full rationale for this structure was established in our architecture discussion
 | 0.1 | `docs/reference/01-architecture-taxonomy.md` | Distilled: agent anatomy, 5-level taxonomy, 5-step loop | APPROVED |
 | 0.2 | `docs/reference/02-tools-mcp.md` | Distilled: tool design, MCP architecture, A2A, NxM problem | APPROVED |
 | 0.3 | `docs/reference/03-context-memory.md` | Distilled: session mgmt, 4 memory types, retrieval patterns | APPROVED |
-| 0.4 | `docs/reference/04-skills-framework.md` | Distilled: SKILL.md anatomy, progressive disclosure, taxonomy. Must answer the procedural-memory-to-Skill promotion question raised in Card 03's review: when does procedural memory become a Skill, who approves it, can agents create/modify Skills, are Skills versioned, are Skills executable instructions or reference docs | NOT STARTED |
-| 0.5 | `docs/reference/05-quality-evaluation.md` | Distilled: outside-in/inside-out eval, LLM-as-judge, flywheel | NOT STARTED |
+| 0.4 | `docs/reference/04-skills-framework.md` | Distilled: SKILL.md anatomy, progressive disclosure, taxonomy. Must answer the procedural-memory-to-Skill promotion question raised in Card 03's review: when does procedural memory become a Skill, who approves it, can agents create/modify Skills, are Skills versioned, are Skills executable instructions or reference docs | APPROVED |
+| 0.5 | `docs/reference/05-quality-evaluation.md` | Distilled: outside-in/inside-out eval, LLM-as-judge, flywheel. Must address formal Skill Certification/validation (example validation, regression scenarios, reference outputs, behavioral verification) — flagged as Card 04's dependency | NOT STARTED |
 | 0.6 | `docs/reference/06-security.md` | Distilled: 7-pillar security, zero ambient authority, sandboxing | NOT STARTED |
 | 0.7 | `docs/reference/07-spec-driven-production.md` | Distilled: SDD, BDD/Gherkin, code review tiers, guardrails | NOT STARTED |
 | 0.8 | `docs/architecture/tech-stack.md` | Final stack decisions: LangGraph, vector DB, model routing | NOT STARTED |
@@ -167,7 +167,7 @@ Full rationale for this structure was established in our architecture discussion
 
 ## PHASE 3 — Skills Library
 
-**Goal:** Build the reusable, swappable capability layer.
+**Goal:** Build the reusable, swappable capability layer. Items deliberately deferred from Card 04 to be addressed during this phase: skill dependency declarations (`depends_on`/`optional_dependencies`/`conflicts_with` fields on the Skill Contract), skill freshness tracking (`last_reviewed`/`validation_date`), and — if a future ecosystem need arises — deeper composition precedence layers beyond the current Core→Domain split (Global→Core→Project→Task→Session).
 
 | # | File/Component | Purpose | Status |
 |---|---|---|---|
@@ -238,6 +238,9 @@ Items that are genuinely worth doing but deliberately deferred to a better-timed
 |---|---|---|
 | **Visual architecture diagram** (SVG/PNG of the 7-layer Runtime Stack, for `docs/architecture/`) | The current text-based diagram is sufficient for active build work; a polished visual is most worth the effort once the stack is partially or fully built, so the diagram reflects reality rather than aspiration | Once Phase 1 (Core Infrastructure) is substantially complete |
 | **Docs site** (e.g., `mkdocs` + GitHub Pages, turning `docs/` into a browsable site) | Premature with only 3-7 reference cards; pays off once specs, reference cards, and architecture docs are numerous enough that flat markdown browsing on GitHub becomes unwieldy | Once all 7 reference cards + Phase 0 architecture docs are approved |
+| **Editorial pass on repeated cross-reference phrasing** (e.g., "mirroring Card 02" appears frequently across Cards 02-04) | Purely stylistic — repetition is fine and even helpful during active development for traceability, but reads better varied once the architecture is frozen (e.g., "following the same governance pattern as Card 02") | A final editorial pass once all 7 cards are approved and frozen, before any external-facing publication of the reference docs |
+
+**Review strategy note (from the Card 04 review cycle, applies going forward to Cards 05-07):** the foundation (Cards 01-04) is now strong enough that review emphasis should shift from "is content missing within this card" toward **cross-card consistency, governance symmetry, and hidden contradictions** between cards. This is the more likely failure mode in mature, multi-card architectures — keep this framing in mind for Cards 05, 06, and 07 specifically, since they sit furthest downstream and have the most surface area to silently contradict something already locked in.
 
 ---
 
@@ -247,6 +250,7 @@ Items that are genuinely worth doing but deliberately deferred to a better-timed
 
 | Date | Session Focus | Files Touched | Outcome |
 |---|---|---|---|
+| 2026-06 | Drafted, reviewed, and revised Card 04 | `docs/reference/04-skills-framework.md`, this plan | Card 04 (Skills Framework) APPROVED after one senior-architecture-review pass — strongest review yet (9.8/9.2). Answered all procedural-memory-to-Skill promotion questions from Card 03 explicitly (human-reviewed suggestion only, never autonomous). Added Skill Registry mirroring Card 02's Tool Registry, and a Skills-vs-prompt-templates boundary clarification. Confirmed the Agent→Tool→Memory→Skill contract pattern is now a consistent architectural signature across Cards 01-04. Deferred: skill dependencies, freshness tracking, deeper composition precedence (Phase 3); formal skill validation/certification flagged as a Card 05 dependency. Review strategy shifts for Cards 05-07: emphasis moves to cross-card consistency and hidden contradictions rather than missing content per-card. |
 | 2026-06 | Drafted, reviewed, and revised Card 03; fixed Card 01 terminology | `docs/reference/03-context-memory.md`, `docs/reference/01-architecture-taxonomy.md`, this plan | Card 03 APPROVED after two senior-architecture-review passes. Added memory metadata (confidence/source/timestamp/verification_status), Retrieve→Rank→Filter→Compress→Inject retrieval pipeline, Consolidate→Validate→Store consolidation process, context budgeting, source precedence with regulated-domain exception, memory contracts, shared-history write-hygiene labels, and LLM-consolidation provenance requirement. Renamed "structured state" to "Structured Records" to avoid colliding with Card 01's `state` — Card 01 corrected to match. Tracked forward: context budget defaults and verification-status transitions (Phase 1), procedural-memory-to-Skill promotion rules (now a stated requirement for Card 04). |
 | 2026-06 | Drafted, reviewed, and revised Cards 01 and 02 | `docs/reference/01-architecture-taxonomy.md`, `docs/reference/02-tools-mcp.md`, this plan | Both cards APPROVED after multiple senior-architecture-review passes. Card 01 elevated Agent Contract to a core component alongside Model/Tools/Orchestration and defined State; established the Runtime Stack governing structure for Cards 02-06. Card 02 added Tool Registry (with binding rule + assignment-authority clarification), Tool Lifecycle, versioning, MCP version pinning, and data minimization, while correctly deferring risk tiers/permissions/sandboxing/A2A trust to Card 06. New artifact added to Phase 0: `docs/architecture/agent-contract-template.md` (0.12). Deferred items flagged in Phase 4 (lifecycle transition criteria, tool certification tests). |
 | — | — | — | — |
