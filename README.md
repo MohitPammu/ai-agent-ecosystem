@@ -1,5 +1,11 @@
 # AI Agent Ecosystem
 
+![License](https://img.shields.io/github/license/MohitPammu/ai-agent-ecosystem)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![Status](https://img.shields.io/badge/status-active%20development-yellow)
+![CI](https://github.com/MohitPammu/ai-agent-ecosystem/actions/workflows/ci.yml/badge.svg)
+![Last Commit](https://img.shields.io/github/last-commit/MohitPammu/ai-agent-ecosystem)
+
 A modular, production-grade multi-agent framework built to power three data science portfolio projects spanning healthcare, sports analytics, and fintech. Built on LangGraph with a zero-additional-cost design philosophy — every component runs on free-tier or existing-subscription infrastructure.
 
 ## Why This Exists
