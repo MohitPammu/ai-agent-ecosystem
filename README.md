@@ -65,9 +65,20 @@ Each project repo depends on this one for its core agent infrastructure and cons
 ```
 ai-agent-ecosystem/
 ├── docs/
-│   ├── reference/          # Distilled architecture reference cards (the knowledge base)
-│   ├── architecture/       # Tech stack decisions, model routing, agent contract template
-│   └── specs/              # BDD-style specs for each core component, written before code
+│   ├── reference/          # Distilled architecture reference cards (the knowledge base) — all 7 APPROVED
+│   ├── architecture/       # Tech stack decisions, model routing, agent contract template (Phase 0, in progress)
+│   ├── specs/              # BDD-style specs for core components, written before code (Phase 1+)
+│   └── governance/         # Review/QA artifacts — emerged organically during Phase 0, not originally planned
+│       ├── ecosystem-cohesion-review-rubric.md         # Frozen v1.0 — reusable beyond this project
+│       ├── PHASE-0-CLOSURE-PLAN.md                     # Active 10-stage sequential remediation plan
+│       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2)
+│       ├── architecture-verification-specification.md  # Post-implementation test plan (Closure Plan Stage 9)
+│       ├── adr/                                        # Architecture Decision Records (Closure Plan Stage 8)
+│       └── cohesion-reviews/v1/                        # Versioned historical review snapshot
+│           ├── claude/                                 # 4-part independent review
+│           ├── chatgpt/                                # 4-part independent review
+│           ├── architecture-review-board-synthesis.md
+│           └── review-reconciliation.md
 ├── core/                   # The reusable "factory" — orchestrator, harness, memory, evaluation, observability, security
 ├── skills/                 # Reusable SKILL.md library shared across all projects
 ├── mcp-servers/            # MCP tool connectors (file system, database, APIs)
