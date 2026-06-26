@@ -1,5 +1,7 @@
 # Reference Card 05 — Quality & Evaluation
 
+**Card Version:** 1.0 (Approved)
+
 **Source whitepaper:** Agent Quality (2025 Day 4, updated May 2026)
 **Governing structure:** Occupies the "Evaluation & Observability" position in the Runtime Stack — sits above Tools, below Security. Inherits two binding obligations from earlier cards, both discharged in this card: (1) Card 01 §8 requires Observability and Evaluation kept as clearly separated disciplines, not conflated; (2) Card 01 and Card 03 both flagged a missing **failure taxonomy** as a gap to close here.
 **Purpose:** Defines the Four Pillars of Agent Quality, the Outside-In/Inside-Out evaluation hierarchy, the evaluator hierarchy (automated metrics → LLM-as-Judge → Agent-as-Judge → HITL), the three pillars of Observability kept distinct from evaluation, the formal failure taxonomy, and the Quality Flywheel that ties it all into a continuous loop.

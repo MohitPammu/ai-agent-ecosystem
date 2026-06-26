@@ -1,5 +1,7 @@
 # Reference Card 01 — Agent Architecture & Taxonomy
 
+**Card Version:** 1.0 (Approved)
+
 **Source whitepapers:** Introduction to Agents and Agent Architectures (Nov 2025) · Spec-Driven Production Grade Development (Day 5, May 2026, foundational framing only)
 **Purpose:** Defines what an agent is, the 5-level capability taxonomy, the universal problem-solving loop, the 3 core architectural components, and the major multi-agent design patterns. This is the conceptual bedrock every other card and every component in `core/` builds on.
 

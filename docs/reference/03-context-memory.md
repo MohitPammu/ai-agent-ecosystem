@@ -1,5 +1,7 @@
 # Reference Card 03 — Context Engineering & Memory
 
+**Card Version:** 1.0 (Approved)
+
 **Source whitepaper:** Context Engineering: Sessions, Memory (2025 Day 3, May 2026 update)
 **Governing structure:** Occupies the "State Management" and "Memory System" positions in the Runtime Stack (Contract → Harness → **State → Memory** → Tools → Evaluation/Observability → Security). Builds directly on the `state` definition established in Card 01 §1. Does not redefine Tool Contracts (Card 02) or Security (Card 06).
 **Purpose:** Defines Context Engineering as a discipline, the Session vs. Memory distinction, the per-turn context lifecycle, the five memory types (correcting Card 01's original RAG-only framing), and multi-agent history-sharing patterns.

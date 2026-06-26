@@ -1,5 +1,7 @@
 # Reference Card 04 — Agent Skills Framework
 
+**Card Version:** 1.0 (Approved)
+
 **Source whitepaper:** Agent Skills (2026 Day 3)
 **Governing structure:** Skills are the concrete implementation of **Procedural Memory** (Card 03 §5) — this card does not redefine memory types, it answers *how* procedural memory gets packaged, loaded, and governed. Skills sit conceptually between the Memory layer and the Tool layer in the Runtime Stack: a Skill can reference Tools (Card 02) but is not itself a Tool — a Tool performs an action, a Skill teaches an agent *how* to approach a class of problem, often by orchestrating several tool calls.
 **Purpose:** Defines SKILL.md anatomy, progressive disclosure, the skill taxonomy, and — per the explicit requirement carried over from Card 03's review — the procedural-memory-to-Skill promotion lifecycle (creation, approval, versioning, agent authorship).

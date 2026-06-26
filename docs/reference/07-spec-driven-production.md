@@ -1,5 +1,7 @@
 # Reference Card 07 — Spec-Driven Production
 
+**Card Version:** 1.0 (Approved)
+
 **Source whitepapers:** Prototype to Production / AgentOps Lifecycle (2025 Day 5) · Spec-Driven Production Grade Development (2026 Day 5)
 **Governing structure:** This is the final card in the Runtime Stack's knowledge base — it does not introduce a new layer, it defines **how every layer defined in Cards 01-06 actually gets built, shipped, and operated.** Where Cards 01-06 are the architecture, this card is the *production discipline* applied to building that architecture. It also closes the one remaining tracked item from Card 06 §26: provider approval metadata for `model-routing-table.md`.
 **Purpose:** Defines Spec-Driven Development (SDD) as the build methodology for this entire ecosystem, BDD/Gherkin spec format, the four agent execution modes, the three-tier code review architecture, Context Hygiene, the "last mile" production gap, CI/CD for agents, safe rollout, and the AgentOps lifecycle that closes the loop back to Card 05's Quality Flywheel.
@@ -54,7 +56,7 @@ Mirroring Card 05's Evaluator Hierarchy (automated → LLM-as-Judge → Agent-as
 
 1. **Automated** — linting, type checking, the CI workflow already running in the `ai-agent-ecosystem` GitHub repo (`.github/workflows/ci.yml`)
 2. **AI review** — an LLM or Agent-as-Judge (Card 05 §4 tier 3) reviews the diff against the approved spec specifically — does the implementation actually satisfy the Given/When/Then clauses, not just "does it look reasonable"
-3. **Human review** — final approval, required for anything touching Tier 3+ per Card 06 §3, consistent with the HITL discipline already established across Cards 01/03/04/05/06
+3. **Human review** — final approval, required for anything reaching Tier 4+ by default (Card 06 §3), or Tier 3 specifically where Card 06 §14's regulated-project override applies (Projects 1/3, writes affecting downstream decisions) — consistent with the HITL discipline already established across Cards 01/03/04/05/06
 
 This is not a new evaluation system — it's Card 05's Evaluator Hierarchy applied specifically to the code-review checkpoint, with the same escalation logic (cheap/automated first, human reserved for what needs it).
 

@@ -1,5 +1,7 @@
 # Reference Card 02 — Tools, MCP & Interoperability
 
+**Card Version:** 1.0 (Approved)
+
 **Source whitepapers:** Agent Tools & Interoperability (2025 Day 2, full depth) · Agent Tools & Interoperability (2026 Day 2, MCP architecture)
 **Governing structure:** This card occupies the "Tool Layer" position in the Master Execution Plan's Runtime Stack (sits below Memory, above Evaluation/Observability and Security/Governance). Because Security sits *below* Tools in that stack, Security governs Tools — not the reverse. This card therefore defines tool mechanics, contracts, registry, and lifecycle; it deliberately does not define risk tiers, permission/scope enforcement, or sandboxing — those are Card 06's authority. It does not redefine Contract, Harness, State, or Memory either — see Card 01.
 **Purpose:** Defines what makes a tool well-designed, the MCP standard for connecting agents to tools, the A2A protocol for agent-to-agent communication, the tool contract specification referenced from Card 01 §8, and the honest security gaps in MCP's current ecosystem.

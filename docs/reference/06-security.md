@@ -1,5 +1,7 @@
 # Reference Card 06 — Security & Governance
 
+**Card Version:** 1.0 (Approved)
+
 **Source whitepaper:** Vibe Coding Agent Security and Evaluation (2026 Day 4, security half)
 **Governing structure:** Sits at the base of the Runtime Stack — Security governs every layer above it (Tools, Memory, State, Harness, Contract), not the reverse. This card discharges the largest backlog of any card in the ecosystem so far. Every item below references exactly which earlier card raised it.
 **Purpose:** Defines the 7-Pillar Security Architecture, risk tiers, the full Permission Model, sandboxing requirements, A2A trust boundaries, registry integrity, memory governance authorization, and the enforcement boundary for Safety evaluation — closing every forward-reference accumulated across Cards 01-05.
