@@ -31,7 +31,7 @@
 | Skill Contract | Card 04 §5 | Card 01/02/03 (Contract pattern lineage) | Stage 1 (2026-06) |
 | Skill Registry | Card 04 §6 | Card 02 §5 (mirrored pattern) | Stage 1 (2026-06) |
 | Skill Certification | Card 05 §7 | Card 04 §8 (open dependency this discharges), Card 02 §6 (lifecycle gate mirrored) | Stage 1 (2026-06) |
-| Observability Standard / Required Fields | Card 05 §5 | Card 01 §8 (**STALE — still lists "evaluation score," flagged Stage 1, fix scheduled Stage 3**), Card 02 (tool-call metadata feeds in), Card 06 §11 (Security Event Schema extends without polluting) | **STALE entry from Card 01 §8 — Stage 3** |
+| Observability Standard / Required Fields | Card 05 §5 | Card 01 §8 (fixed — now points to Card 05 §5 instead of restating, Stage 3), Card 02 (tool-call metadata feeds in), Card 06 §11 (Security Event Schema extends without polluting) | Stage 3 (2026-06) — fixed, Card 01 §8 now points to Card 05 §5 instead of restating |
 | Evaluation vs. Observability Separation | Card 05 §5 | Card 01 §8 (binding requirement), Card 06 §11 | Stage 1 (2026-06) |
 | Evaluator Hierarchy (Automated → LLM-as-Judge → Agent-as-Judge → HITL) | Card 05 §4 | Card 06 §9 (tier 4 = HITL), Card 06 §10 (tier 3 = Agent-as-Judge trace access), Card 07 §6 (mirrored for code review), Card 07 §8 (tier 1 = golden-set regression) | Stage 1 (2026-06) |
 | Formal Failure Taxonomy | Card 05 §6 | Card 01 §2 (Decide stage branches on it), Card 01 §8 (gap originally flagged), Card 02 §4 (error contracts consume it), Card 03 (gap originally flagged) | Stage 1 (2026-06) |

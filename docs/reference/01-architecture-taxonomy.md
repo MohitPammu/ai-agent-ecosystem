@@ -1,6 +1,7 @@
 # Reference Card 01 — Agent Architecture & Taxonomy
 
-**Card Version:** 1.0 (Approved)
+**Card Version:** 2.0
+**Changelog:** §8's observability field list replaced with a pointer to Card 05 §5 — the restated list had drifted stale (still listed "evaluation score," which Card 05 §5 explicitly excludes). Closure Plan Stage 3.
 
 **Source whitepapers:** Introduction to Agents and Agent Architectures (Nov 2025) · Spec-Driven Production Grade Development (Day 5, May 2026, foundational framing only)
 **Purpose:** Defines what an agent is, the 5-level capability taxonomy, the universal problem-solving loop, the 3 core architectural components, and the major multi-agent design patterns. This is the conceptual bedrock every other card and every component in `core/` builds on.
@@ -106,7 +107,7 @@ This card is the conceptual bedrock, not the full specification. The following l
 
 - **Security architecture** (tool permission scopes, secret management, audit logging, sandboxing, data governance, regulatory boundaries for healthcare/finance, risk tiers for action types) → **Card 06 — Security**
 - **Tool contracts** (input/output schema, timeout behavior, error contract, retry policy, idempotency, observability metadata per tool) → **Card 02 — Tools, MCP & Interoperability**
-- **Observability standard** (required fields per execution: Run ID, Agent ID, Mission, tools used, cost, latency, errors, evaluation score, human interventions) → **Card 05 — Quality & Evaluation**
+- **Observability standard** — see Card 05 §5 for the current observability field schema; not restated here to avoid drift → **Card 05 — Quality & Evaluation**
 - **Agent Contract Standard** — now established as a core architectural component in §1, on par with Model/Tools/Orchestration. Full template is formalized separately as `docs/architecture/agent-contract-template.md` (Master Execution Plan, Phase 0, file 0.12) — not duplicated here.
 
 **Explicit Level 4 boundary (scope control):** To prevent future scope creep, the following are explicitly prohibited anywhere in this ecosystem unless this document is formally revised: autonomous tool creation, autonomous code modification, autonomous permission escalation, and production deployment without human review. If a future project seems to need one of these, that is a signal to revisit this card deliberately — not to build around it quietly.
