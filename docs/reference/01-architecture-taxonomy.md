@@ -1,7 +1,8 @@
 # Reference Card 01 — Agent Architecture & Taxonomy
 
-**Card Version:** 2.0
-**Changelog:** §8's observability field list replaced with a pointer to Card 05 §5 — the restated list had drifted stale (still listed "evaluation score," which Card 05 §5 explicitly excludes). Closure Plan Stage 3.
+**Card Version:** 3.0
+**Changelog:** §2 — added "Blast radius — involuntary Harness/Orchestrator crash" statement (checkpoint-based recovery, idempotency discipline for in-flight calls). Closure Plan Stage 6.
+**Changelog (v2.0):** §8's observability field list replaced with a pointer to Card 05 §5 — the restated list had drifted stale (still listed "evaluation score," which Card 05 §5 explicitly excludes). Closure Plan Stage 3.
 
 **Source whitepapers:** Introduction to Agents and Agent Architectures (Nov 2025) · Spec-Driven Production Grade Development (Day 5, May 2026, foundational framing only)
 **Purpose:** Defines what an agent is, the 5-level capability taxonomy, the universal problem-solving loop, the 3 core architectural components, and the major multi-agent design patterns. This is the conceptual bedrock every other card and every component in `core/` builds on.
@@ -38,6 +39,8 @@ Every agent, regardless of level, runs the same core cycle — extended here bey
   - **Stop** — terminate the loop, with a clear reason logged
 
 This loop is the pattern to implement in `core/harness/` — it is framework-agnostic and applies whether the agent is built in LangGraph, ADK, or raw Python. The Validate/Decide stage is what separates a demo loop from a production-grade one: agents do not merely act, they operate within bounded permissions and observable, recoverable execution traces.
+
+**Blast radius — involuntary Harness/Orchestrator crash (distinct from a deliberate `Stop`):** a `Stop` is a logged, intentional Decide outcome; a crash is not. On Harness restart after an involuntary crash, recovery resumes from the last persisted `state` checkpoint (§1's `state` definition) rather than restarting the mission from scratch — in-flight tool calls without a confirmed completion record are treated as failed and subject to the same retry/idempotency discipline as any other tool failure (Card 02 §4), never silently assumed successful. If no checkpoint exists (the crash occurred before the first checkpoint was written), the mission is treated as never having started, and any partial side effects from tool calls made before the crash are exactly why idempotency marking (Card 02 §3) matters at this boundary, not just for ordinary retries.
 
 ## 3. The 5-Level Agent Taxonomy
 

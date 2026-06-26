@@ -1,6 +1,7 @@
 # Reference Card 05 — Quality & Evaluation
 
-**Card Version:** 1.0 (Approved)
+**Card Version:** 2.0
+**Changelog:** §5 — added "Blast radius — Evaluation-service unavailability" statement (non-blocking backfill model, Tier 4-5 HITL exception deferring to Card 06 §20). Closure Plan Stage 6.
 
 **Source whitepaper:** Agent Quality (2025 Day 4, updated May 2026)
 **Governing structure:** Occupies the "Evaluation & Observability" position in the Runtime Stack — sits above Tools, below Security. Inherits two binding obligations from earlier cards, both discharged in this card: (1) Card 01 §8 requires Observability and Evaluation kept as clearly separated disciplines, not conflated; (2) Card 01 and Card 03 both flagged a missing **failure taxonomy** as a gap to close here.
@@ -59,6 +60,8 @@ Per Card 01 §8's binding requirement: **Observability answers "what happened"; 
 **Required observability fields per execution** (the concrete schema, satisfying Card 01 §8's forward reference): Run ID, Agent ID, Mission, tools used (with args/outcomes per Card 02's observability metadata field), cost, latency, errors, state transitions, trace/span IDs, and human intervention *events* (that a HITL event occurred — not its outcome or rubric). **Evaluation outputs — scores, rubric judgments, win/loss/tie comparisons, pass/fail decisions — are explicitly NOT observability fields.** They are stored in separate evaluation records, joined back to the observability trace by `run_id`/`trace_id`. This is a real boundary, not a stylistic one: observability captures what happened; evaluation captures a judgment about it, and the two must remain separately queryable.
 
 **Direct implication:** `core/observability/` (Phase 1) implements logging/tracing/metrics as infrastructure; `core/evaluation/` (also Phase 1) is a *consumer* of that infrastructure, not a reimplementation of it. The two are separate modules with a one-directional dependency (evaluation reads observability data via the join key; observability has no dependency on evaluation, and never stores evaluation artifacts directly).
+
+**Blast radius — Evaluation-service unavailability:** the Harness never blocks on Evaluation to complete a turn — Evaluation is a downstream consumer of observability data, not a gate in the execution loop. If `core/evaluation/` is unavailable, traces and observability records continue being captured normally (Observability has no dependency on Evaluation, per the one-directional dependency above); evaluation scoring simply backfills once the service recovers, processing the accumulated trace backlog. The one exception: Tier 4-5 actions requiring HITL escalation specifically triggered by a Safety/Alignment evaluation flag (Card 06 §9) — if Evaluation is down, that signal cannot fire, so Card 06's Policy Server fail-closed table (§20) governs those tiers regardless, independent of Evaluation's availability.
 
 ## 6. Formal Failure Taxonomy
 

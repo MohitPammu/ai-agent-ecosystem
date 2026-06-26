@@ -1,7 +1,8 @@
 # Reference Card 03 — Context Engineering & Memory
 
-**Card Version:** 3.0
-**Changelog:** §12 added — new "Source Boundary Preservation" subsection operationalizing the untrusted-context-boundary mechanism Card 06 §26 requires (`source_type` tagging convention + non-override rule). Closure Plan Stage 5.
+**Card Version:** 4.0
+**Changelog:** §12 — added "Blast radius — Memory backend unavailability" statement (degraded-read default, queued/dropped writes, Tier 2+ Structured Records exception per Card 06 §20). Closure Plan Stage 6.
+**Changelog (v3.0):** §12 added — new "Source Boundary Preservation" subsection operationalizing the untrusted-context-boundary mechanism Card 06 §26 requires (`source_type` tagging convention + non-override rule). Closure Plan Stage 5.
 **Changelog (v2.0):** §4 — relabeled LangGraph-specific content as "Implementation Note (LangGraph)" to make framework-coupling visible and scoped, per Closure Plan Stage 4.
 
 **Source whitepaper:** Context Engineering: Sessions, Memory (2025 Day 3, May 2026 update)
@@ -172,6 +173,8 @@ Card 06 §26 requires that context assembly preserve source boundaries so that r
 **Enforcement boundary, consistent with §9a's pattern in Card 06:** this section defines *what* the boundary is and *how* entries are tagged — it does not redefine *who* may write a `system`-tagged entry into context, or what happens on a detected violation attempt. That authorization/enforcement layer is Card 06's responsibility (Pillar 3 — Model, and Pillar 4 — Application & Runtime), consistent with how this card has deferred enforcement authority everywhere else (§8's memory governance, §11's memory contracts).
 
 **Direct implication:** `core/harness/`'s Prepare Context step (§3) is where `source_type` tags are assigned and where the non-override rule is structurally enforced — not as a runtime filter applied after assembly, but as a constraint on how the assembly function is permitted to construct the payload in the first place.
+
+**Blast radius — Memory backend unavailability:** if `core/memory/`'s backend (vector store, PostgreSQL, or structured stores) is unavailable, the Harness degrades rather than hard-fails for read operations: it proceeds with only in-session state (Card 01's `state` definition) and System/`tool_output`/`user_upload`-sourced context, explicitly flagging to the trace that long-term memory retrieval was skipped — never silently proceeding as if memory simply had nothing relevant. Write operations (new memories, consolidation per §8) queue or are dropped per a configured retention policy, never block the in-progress turn. The one exception: Structured Records reads for Tier 2+ regulated lookups (Projects 1/3) follow Card 06 §20's fail-closed-by-tier table, not this degraded-read default — a missing authoritative record is not the same risk as a missing semantic-memory hint.
 
 ---
 

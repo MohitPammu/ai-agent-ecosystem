@@ -1,7 +1,8 @@
 # Reference Card 02 — Tools, MCP & Interoperability
 
-**Card Version:** 2.0
-**Changelog:** §5 — added "Alternative Architecture Considered" note documenting why the Tool Registry is kept separate from Card 04's Skill Registry, per Closure Plan Stage 4.
+**Card Version:** 3.0
+**Changelog:** §5 — added "Blast radius — whole-registry-file unavailability" statement (system-wide fail-closed on Registry file loss, distinct from Card 06 §16's single-bad-entry case). Closure Plan Stage 6.
+**Changelog (v2.0):** §5 — added "Alternative Architecture Considered" note documenting why the Tool Registry is kept separate from Card 04's Skill Registry, per Closure Plan Stage 4.
 
 **Source whitepapers:** Agent Tools & Interoperability (2025 Day 2, full depth) · Agent Tools & Interoperability (2026 Day 2, MCP architecture)
 **Governing structure:** This card occupies the "Tool Layer" position in the Master Execution Plan's Runtime Stack (sits below Memory, above Evaluation/Observability and Security/Governance). Because Security sits *below* Tools in that stack, Security governs Tools — not the reverse. This card therefore defines tool mechanics, contracts, registry, and lifecycle; it deliberately does not define risk tiers, permission/scope enforcement, or sandboxing — those are Card 06's authority. It does not redefine Contract, Harness, State, or Memory either — see Card 01.
@@ -89,6 +90,8 @@ All four conditions must hold. This is checked at call time by the orchestration
 **Implementation note:** for our scale (one developer, three projects), this does not need to be a separate database initially — a structured `tool-registry.yaml` or `.json` file in `core/` is sufficient, but the *discipline* of enforcing the binding rule above (rather than letting agents free-discover MCP servers) is what matters, regardless of storage format.
 
 **Alternative Architecture Considered:** A unified Capability Registry (merging Tool Registry and Card 04 §6's Skill Registry into one schema) was considered, given their structural field similarity. Rejected: a Tool is a callable function with a fixed input/output contract and binary Active/Deprecated lifecycle; a Skill is instructional content with a fundamentally different lifecycle (draft → human-reviewed promotion from procedural memory, per Card 04 §8) and no callable contract at all. Merging them would force one schema to awkwardly serve two different governance semantics — executable capability vs. procedural knowledge. Kept separate, per the reconciled position in `cohesion-reviews/v1/review-reconciliation.md`.
+
+**Blast radius — whole-registry-file unavailability (distinct from a single bad entry, governed by Card 06 §16):** if the Tool Registry file itself is unreadable, corrupted, or unavailable — not just one entry failing signature verification — the binding rule's condition (1), "present in the Registry," cannot be evaluated for *any* tool. This fails closed system-wide: no tool is callable until the Registry is restored, since "Registry unavailable" cannot be safely distinguished from "nothing is registered" without risking silent over-permission. What still works: already-granted JIT tokens (Card 06 §18) for calls already in flight may complete, but no new binding check can succeed. This is treated as a Tier 5 incident, with the same audit/notification discipline as a Policy Server outage (Card 06 §20).
 
 ## 6. Tool Lifecycle
 
