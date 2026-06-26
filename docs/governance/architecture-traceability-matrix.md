@@ -46,8 +46,8 @@
 | Three-Tier Code Review | Card 07 §6 | Card 05 §4 (Evaluator Hierarchy it mirrors) | Stage 1 (2026-06) |
 | Canary / Rollout Discipline | Card 07 §9 | Card 07 §11 (fleet-governance rollout reuses same discipline, Phase 5+) | Stage 1 (2026-06) |
 | Context Hygiene (`[[VARIABLE]]` placeholders) | Card 07 §4 | Card 06 §5 (resolved only inside sandbox), Card 06 §13 (supports classification discipline) | Stage 1 (2026-06) |
-| Alternative-Architecture-Considered Decisions (Tool/Skill Registry separation; Circuit Breaker/Policy Server separation) | Not yet documented in-card | Card 02 §5, Card 04 §6 (Registry separation — pending Stage 4), Card 06 §11 (Circuit Breaker — pending Stage 4) | **Pending — Stage 4** |
-| LangGraph Implementation-Note Labeling | Not yet relabeled | Card 03 §4 | **Pending — Stage 4** |
+| Alternative-Architecture-Considered Decisions (Tool/Skill Registry separation; Circuit Breaker/Policy Server separation) | Card 02 §5 / Card 04 §6 (Registry separation, documented both sides); Card 06 §11 (Circuit Breaker, documented) | Card 02 §5, Card 04 §6, Card 06 §11 — each now carries its own "Alternative Architecture Considered" note citing `cohesion-reviews/v1/review-reconciliation.md` | Stage 4 (2026-06) — documented in-card |
+| LangGraph Implementation-Note Labeling | Card 03 §4 | Card 03 §4 — LangGraph-specific content now wrapped in `**Implementation Note (LangGraph):**` label, scoped separately from the general ADK-comparison sentence | Stage 4 (2026-06) — relabeled |
 | Blast-Radius / Degradation Behavior (Memory, Registry-file, Evaluation-service, Harness/Orchestrator crash) | Not yet documented in-card | Card 03, Card 02 §5/§16, Card 04 §6, Card 05, Card 01 §2 | **Pending — Stage 6** |
 | Four Missing Foundational Artifacts | Not yet drafted | `agent-contract-template.md`, `AGENTS.md`, `model-routing-table.md`, `tech-stack.md` | **Pending — Stage 7** |
 | Card 06 Topic Index | Not yet added | Card 06 (self) | **Pending — Stage 8** |

@@ -1,6 +1,7 @@
 # Reference Card 04 — Agent Skills Framework
 
-**Card Version:** 1.0 (Approved)
+**Card Version:** 2.0
+**Changelog:** §6 — added "Alternative Architecture Considered" note documenting why the Skill Registry is kept separate from Card 02's Tool Registry, per Closure Plan Stage 4.
 
 **Source whitepaper:** Agent Skills (2026 Day 3)
 **Governing structure:** Skills are the concrete implementation of **Procedural Memory** (Card 03 §5) — this card does not redefine memory types, it answers *how* procedural memory gets packaged, loaded, and governed. Skills sit conceptually between the Memory layer and the Tool layer in the Runtime Stack: a Skill can reference Tools (Card 02) but is not itself a Tool — a Tool performs an action, a Skill teaches an agent *how* to approach a class of problem, often by orchestrating several tool calls.
@@ -84,6 +85,8 @@ Registry entry fields (mirroring Card 02 §5's Tool Registry table):
 | **location** | Path to the skill folder |
 
 **Implementation note:** same as Card 02's Tool Registry — a structured `skills-registry.yaml` is sufficient at our scale; the discipline of treating it as the sole discovery mechanism is what matters, not the storage format.
+
+**Alternative Architecture Considered:** A unified Capability Registry (merging this Skill Registry with Card 02 §5's Tool Registry into one schema) was considered, given their structural field similarity. Rejected: a Skill is instructional content with no callable contract, promoted into existence via human-reviewed procedural-memory promotion (§8) rather than registered as a pre-built capability; a Tool is a callable function with a fixed input/output contract and a simpler binary lifecycle. Merging them would force one schema to serve two different governance semantics — procedural knowledge vs. executable capability. Kept separate, per the reconciled position in `cohesion-reviews/v1/review-reconciliation.md`.
 
 ## 7. Skills vs. Prompt Templates — Boundary Clarification
 

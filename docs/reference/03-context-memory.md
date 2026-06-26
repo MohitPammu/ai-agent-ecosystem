@@ -1,6 +1,7 @@
 # Reference Card 03 — Context Engineering & Memory
 
-**Card Version:** 1.0 (Approved)
+**Card Version:** 2.0
+**Changelog:** §4 — relabeled LangGraph-specific content as "Implementation Note (LangGraph)" to make framework-coupling visible and scoped, per Closure Plan Stage 4.
 
 **Source whitepaper:** Context Engineering: Sessions, Memory (2025 Day 3, May 2026 update)
 **Governing structure:** Occupies the "State Management" and "Memory System" positions in the Runtime Stack (Contract → Harness → **State → Memory** → Tools → Evaluation/Observability → Security). Builds directly on the `state` definition established in Card 01 §1. Does not redefine Tool Contracts (Card 02) or Security (Card 06).
@@ -42,7 +43,9 @@ Every turn runs this 4-step cycle — this is the operational mechanism `core/ha
 - **Session**: manages turn-by-turn state for a *single* conversation. Think of it as a filing cabinet with two folders — one for **events** (the chronological, append-only conversation history) and one for **state** (mutable working memory/scratchpad for in-progress data, per Card 01's state definition)
 - **Memory**: long-term persistence *across* sessions — consolidating key facts so the agent doesn't start from zero in the next conversation
 
-**Framework implementation differs** — relevant because we're using LangGraph: ADK uses an explicit Session object (events list + separate state object). **LangGraph has no formal "session" object — the state IS the session.** State holds conversation history (as a Message list) plus all other working data, and unlike an append-only event log, LangGraph state is mutable — it can be transformed, summarized, or compacted directly. This is directly useful for managing context rot (§1) — compaction strategies operate on this same mutable state object.
+**Framework implementation differs** — relevant because we're using LangGraph: ADK uses an explicit Session object (events list + separate state object).
+
+**Implementation Note (LangGraph):** LangGraph has no formal "session" object — the state IS the session. State holds conversation history (as a Message list) plus all other working data, and unlike an append-only event log, LangGraph state is mutable — it can be transformed, summarized, or compacted directly. This is directly useful for managing context rot (§1) — compaction strategies operate on this same mutable state object.
 
 ## 5. The Five Memory Types (Correction to Card 01's Original Framing)
 

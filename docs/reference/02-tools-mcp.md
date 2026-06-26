@@ -1,6 +1,7 @@
 # Reference Card 02 — Tools, MCP & Interoperability
 
-**Card Version:** 1.0 (Approved)
+**Card Version:** 2.0
+**Changelog:** §5 — added "Alternative Architecture Considered" note documenting why the Tool Registry is kept separate from Card 04's Skill Registry, per Closure Plan Stage 4.
 
 **Source whitepapers:** Agent Tools & Interoperability (2025 Day 2, full depth) · Agent Tools & Interoperability (2026 Day 2, MCP architecture)
 **Governing structure:** This card occupies the "Tool Layer" position in the Master Execution Plan's Runtime Stack (sits below Memory, above Evaluation/Observability and Security/Governance). Because Security sits *below* Tools in that stack, Security governs Tools — not the reverse. This card therefore defines tool mechanics, contracts, registry, and lifecycle; it deliberately does not define risk tiers, permission/scope enforcement, or sandboxing — those are Card 06's authority. It does not redefine Contract, Harness, State, or Memory either — see Card 01.
@@ -86,6 +87,8 @@ All four conditions must hold. This is checked at call time by the orchestration
 **Assignment authority — single source of truth:** condition (2) raises a fair question — who has the authority to decide that an agent/role is assigned to a tool? The Registry *records* the assignment (it's queried at call time), but the *authority* to grant or revoke an assignment belongs to Card 06's Policy Server, not the Registry itself. This keeps the Runtime Stack discipline intact: Security governs Tools, not the reverse. The Registry is the lookup table; the Policy Server is what writes to it.
 
 **Implementation note:** for our scale (one developer, three projects), this does not need to be a separate database initially — a structured `tool-registry.yaml` or `.json` file in `core/` is sufficient, but the *discipline* of enforcing the binding rule above (rather than letting agents free-discover MCP servers) is what matters, regardless of storage format.
+
+**Alternative Architecture Considered:** A unified Capability Registry (merging Tool Registry and Card 04 §6's Skill Registry into one schema) was considered, given their structural field similarity. Rejected: a Tool is a callable function with a fixed input/output contract and binary Active/Deprecated lifecycle; a Skill is instructional content with a fundamentally different lifecycle (draft → human-reviewed promotion from procedural memory, per Card 04 §8) and no callable contract at all. Merging them would force one schema to awkwardly serve two different governance semantics — executable capability vs. procedural knowledge. Kept separate, per the reconciled position in `cohesion-reviews/v1/review-reconciliation.md`.
 
 ## 6. Tool Lifecycle
 

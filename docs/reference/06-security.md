@@ -1,6 +1,7 @@
 # Reference Card 06 — Security & Governance
 
-**Card Version:** 1.0 (Approved)
+**Card Version:** 2.0
+**Changelog:** §11 — added "Alternative Architecture Considered" note documenting why the Circuit Breaker is kept separate from the Policy Server, per Closure Plan Stage 4.
 
 **Source whitepaper:** Vibe Coding Agent Security and Evaluation (2026 Day 4, security half)
 **Governing structure:** Sits at the base of the Runtime Stack — Security governs every layer above it (Tools, Memory, State, Harness, Contract), not the reverse. This card discharges the largest backlog of any card in the ecosystem so far. Every item below references exactly which earlier card raised it.
@@ -127,6 +128,8 @@ Card 05 built the observability infrastructure (logging/tracing/metrics) as a se
 - A quarantined agent may still produce a safe, pre-approved final explanation to the user (e.g., "this task was halted for review") — quarantine blocks further privileged action, not all communication
 
 **Security Event Schema (extends, does not pollute, Card 05's observability):** security events carry fields beyond Card 05's generic observability schema — `policy_decision_id`, `denied_resource`, `requested_scope`, `granted_scope`, `risk_tier`, `token_id_hash` (never the raw token, per §18), `circuit_breaker_state`, `quarantine_reason`, `reviewer_id`, `attestation_id`. These are security-specific event types layered on top of Card 05's observability infrastructure — observability captures events generically, this schema is what Security specifically needs from those events, and Evaluation (Card 05) remains untouched by this addition.
+
+**Alternative Architecture Considered:** Merging the Circuit Breaker into the Policy Server (one component instead of two) was considered, given both sit in Security's enforcement path. Rejected: the Policy Server *decides* (ABAC+JIT authorization, per-call evaluation of whether an action is permitted) while the Circuit Breaker *acts* on accumulated runtime signal (tripping, quarantining, scoping the blast radius of an already-in-progress execution) — the same Decide/Act separation Card 01 §2 already establishes for the execution loop generally. Collapsing them would blur a decision-time control with a runtime-state control. Kept separate, per the reconciled position in `cohesion-reviews/v1/review-reconciliation.md`.
 
 ## 12. Governance and the Immutable Audit Trail (Pillar 7)
 
