@@ -1,7 +1,8 @@
 # Reference Card 03 — Context Engineering & Memory
 
-**Card Version:** 2.0
-**Changelog:** §4 — relabeled LangGraph-specific content as "Implementation Note (LangGraph)" to make framework-coupling visible and scoped, per Closure Plan Stage 4.
+**Card Version:** 3.0
+**Changelog:** §12 added — new "Source Boundary Preservation" subsection operationalizing the untrusted-context-boundary mechanism Card 06 §26 requires (`source_type` tagging convention + non-override rule). Closure Plan Stage 5.
+**Changelog (v2.0):** §4 — relabeled LangGraph-specific content as "Implementation Note (LangGraph)" to make framework-coupling visible and scoped, per Closure Plan Stage 4.
 
 **Source whitepaper:** Context Engineering: Sessions, Memory (2025 Day 3, May 2026 update)
 **Governing structure:** Occupies the "State Management" and "Memory System" positions in the Runtime Stack (Contract → Harness → **State → Memory** → Tools → Evaluation/Observability → Security). Builds directly on the `state` definition established in Card 01 §1. Does not redefine Tool Contracts (Card 02) or Security (Card 06).
@@ -148,6 +149,29 @@ Borrowing the same discipline established for Agent Contracts (Card 01) and Tool
 | **confidence_model** | How confidence is assigned for this type (e.g., structured records default to maximum confidence since they're authoritative; model-inferred preferences default lower) |
 
 **Scope discipline note, consistent with how Cards 01 and 02 handled similar territory:** this card defines *that* retention/deletion/correction policies exist and what fields they need — it does not define *who is authorized* to invoke deletion or correction, or how that authorization is enforced at runtime. That enforcement layer is Card 06's responsibility (the same pattern as risk tiers in Card 02 — defined here as a reference field, governed there). Memory Contracts should be drafted per-type once `core/memory/` enters active build (Phase 1), not fully populated in this card before any memory type has been implemented.
+
+## 12. Source Boundary Preservation — Closing Card 06 §26's Requirement
+
+Card 06 §26 requires that context assembly preserve source boundaries so that retrieved, tool, or A2A content cannot override system or policy instructions — this section is where that requirement actually gets operationalized, rather than asserted without a mechanism.
+
+**The `source_type` tagging convention:** every entry assembled into a turn's context payload (§2's three categories) carries a `source_type` tag, assigned at the point of ingestion, before the entry is placed into context:
+
+| `source_type` | Assigned to |
+|---|---|
+| `system` | System instructions, AGENTS.md content, policy/contract text — the only source type permitted to issue binding instructions |
+| `tool_output` | Anything returned from a Tool call (Card 02) |
+| `retrieved` | RAG/vector-store content (semantic memory, §5) |
+| `memory` | Episodic, procedural, preference, or Structured Records content pulled from long-term memory (§5) |
+| `a2a_message` | Content received from another agent via A2A (Card 02 §7) |
+| `user_upload` | Files, pasted content, or other artifacts the user directly supplies in-turn |
+
+**The non-override rule (the actual boundary):** the Harness (`core/harness/`) must never let content carrying any `source_type` other than `system` be interpreted as an instruction that overrides, modifies, or revokes a `system`-tagged instruction already in context — regardless of that content's literal phrasing, formatting, or claimed authority (e.g., a tool output or retrieved document that contains text reading "ignore previous instructions" is data to be reasoned about, never a command to be obeyed). This is the architectural answer to prompt/tool-output injection: the boundary is enforced by tagging and assembly discipline, not by trusting the model to recognize injection on its own.
+
+**Where this sits relative to §2's three categories:** `source_type` is metadata layered onto the existing three-category model (Context to guide reasoning / Evidential & factual data / Immediate conversational info) — it does not replace that categorization, it adds an enforceable boundary on top of it. Only `system`-tagged content may ever populate the "Context to guide reasoning" category's instruction-bearing entries; everything else, regardless of which of the three categories it lands in, is treated as evidence or conversation, never as instruction.
+
+**Enforcement boundary, consistent with §9a's pattern in Card 06:** this section defines *what* the boundary is and *how* entries are tagged — it does not redefine *who* may write a `system`-tagged entry into context, or what happens on a detected violation attempt. That authorization/enforcement layer is Card 06's responsibility (Pillar 3 — Model, and Pillar 4 — Application & Runtime), consistent with how this card has deferred enforcement authority everywhere else (§8's memory governance, §11's memory contracts).
+
+**Direct implication:** `core/harness/`'s Prepare Context step (§3) is where `source_type` tags are assigned and where the non-override rule is structurally enforced — not as a runtime filter applied after assembly, but as a constraint on how the assembly function is permitted to construct the payload in the first place.
 
 ---
 

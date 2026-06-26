@@ -26,7 +26,7 @@
 | Memory Consolidation / Contested-status | Card 03 §8 | Card 04 §8 (promotion-candidate source), Card 06 §8 (who clears `contested` flag) | Stage 1 (2026-06) |
 | Context Budget Management | Card 03 §9 | Card 04 §3 (Progressive Disclosure cites same principle) | Stage 1 (2026-06) |
 | Source Precedence / Regulated-Domain Exception | Card 03 §10 | Card 06 (project-policy boundary, not redefined there) | Stage 1 (2026-06) |
-| **Untrusted-Context-Boundary mechanism** | **Card 06 §26 cites Card 03 §2-3 — MECHANISM NOT YET DEFINED IN CARD 03** | Card 06 §26 | **STALE — flagged Stage 1, fix scheduled Stage 5** |
+| Source Boundary Preservation (`source_type` tagging + non-override rule) | Card 03 §12 | Card 06 §26 (citation corrected from "§2-3" to "§12," requirement now operationalized) | Stage 5 (2026-06) — mechanism drafted, citation corrected |
 | Procedural-Memory-to-Skill Promotion | Card 04 §8 | Card 03 §8 (consolidation flags candidates), Card 01 §8 (Level 4 autonomy prohibition governs this) | Stage 1 (2026-06) |
 | Skill Contract | Card 04 §5 | Card 01/02/03 (Contract pattern lineage) | Stage 1 (2026-06) |
 | Skill Registry | Card 04 §6 | Card 02 §5 (mirrored pattern) | Stage 1 (2026-06) |
