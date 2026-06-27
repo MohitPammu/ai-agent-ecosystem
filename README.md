@@ -64,16 +64,17 @@ Each project repo depends on this one for its core agent infrastructure and cons
 
 ```
 ai-agent-ecosystem/
+├── AGENTS.md               # Master ecosystem specification — signed instruction artifact, v1.0 (Closure Plan Stage 7)
 ├── docs/
 │   ├── reference/          # Distilled architecture reference cards (the knowledge base) — all 7 APPROVED
-│   ├── architecture/       # Tech stack decisions, model routing, agent contract template (Phase 0, in progress)
+│   ├── architecture/       # agent-contract-template.md done (Stage 7); model-routing-table.md, tech-stack.md in progress
 │   ├── specs/              # BDD-style specs for core components, written before code (Phase 1+)
 │   └── governance/         # Review/QA artifacts — emerged organically during Phase 0, not originally planned
 │       ├── ecosystem-cohesion-review-rubric.md         # Frozen v1.0 — reusable beyond this project
-│       ├── PHASE-0-CLOSURE-PLAN.md                     # Active 10-stage sequential remediation plan
-│       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2)
-│       ├── architecture-verification-specification.md  # Post-implementation test plan (Closure Plan Stage 9)
-│       ├── adr/                                        # Architecture Decision Records (Closure Plan Stage 8)
+│       ├── PHASE-0-CLOSURE-PLAN.md                     # Active sequential remediation plan — Stages 1-6 complete, Stage 7 in progress
+│       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2) — living document, updated every stage
+│       ├── architecture-verification-specification.md  # Post-implementation test plan (Closure Plan Stage 9, not yet created)
+│       ├── adr/                                        # Architecture Decision Records (Closure Plan Stage 8, not yet populated)
 │       └── cohesion-reviews/v1/                        # Versioned historical review snapshot
 │           ├── claude/                                 # 4-part independent review
 │           ├── chatgpt/                                # 4-part independent review
@@ -100,7 +101,9 @@ Full rationale documented in `docs/architecture/tech-stack.md`.
 
 ## Build Status
 
-This repository is under active, incremental development as part of a structured architecture build. See `00-MASTER-EXECUTION-PLAN.md` for the complete phase-by-phase roadmap, current status of every component, and a running progress log of design decisions.
+**Phase 0 (Foundation Documents) is in its final stretch.** All 7 reference cards are `APPROVED`. The Phase 0 Closure Plan — a 9-stage sequential remediation process that emerged from independent architecture review — has completed Stages 1-6 (forward-reference audit, traceability matrix, factual-contradiction fixes, anti-bloat documentation, the untrusted-context-boundary mechanism, and blast-radius/degradation statements across every major component). Stage 7 (the four missing foundational artifacts) is in progress: `AGENTS.md` and `agent-contract-template.md` are complete; `model-routing-table.md` and `tech-stack.md` remain. Stages 8-9 (ADRs, the architecture verification specification) are next, after which Phase 0 closes and Phase 1 (Core Infrastructure) begins.
+
+See `00-MASTER-EXECUTION-PLAN.md` for the complete phase-by-phase roadmap, current status of every component, and a running progress log of design decisions.
 
 ## Author
 
