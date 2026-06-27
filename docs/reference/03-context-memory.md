@@ -1,7 +1,8 @@
 # Reference Card 03 — Context Engineering & Memory
 
-**Card Version:** 4.0
-**Changelog:** §12 — added "Blast radius — Memory backend unavailability" statement (degraded-read default, queued/dropped writes, Tier 2+ Structured Records exception per Card 06 §20). Closure Plan Stage 6.
+**Card Version:** 5.0
+**Changelog:** §12 — added "Implementation Note (Anthropic API)" specifying that non-`system` source_type content must route through `tool_result` blocks specifically, not just be tagged — the concrete mechanism beneath the existing non-override rule. Sourced from a Phase 0 platform docs scan, post-Closure Plan.
+**Changelog (v4.0):** §12 — added "Blast radius — Memory backend unavailability" statement (degraded-read default, queued/dropped writes, Tier 2+ Structured Records exception per Card 06 §20). Closure Plan Stage 6.
 **Changelog (v3.0):** §12 added — new "Source Boundary Preservation" subsection operationalizing the untrusted-context-boundary mechanism Card 06 §26 requires (`source_type` tagging convention + non-override rule). Closure Plan Stage 5.
 **Changelog (v2.0):** §4 — relabeled LangGraph-specific content as "Implementation Note (LangGraph)" to make framework-coupling visible and scoped, per Closure Plan Stage 4.
 
@@ -167,6 +168,8 @@ Card 06 §26 requires that context assembly preserve source boundaries so that r
 | `user_upload` | Files, pasted content, or other artifacts the user directly supplies in-turn |
 
 **The non-override rule (the actual boundary):** the Harness (`core/harness/`) must never let content carrying any `source_type` other than `system` be interpreted as an instruction that overrides, modifies, or revokes a `system`-tagged instruction already in context — regardless of that content's literal phrasing, formatting, or claimed authority (e.g., a tool output or retrieved document that contains text reading "ignore previous instructions" is data to be reasoned about, never a command to be obeyed). This is the architectural answer to prompt/tool-output injection: the boundary is enforced by tagging and assembly discipline, not by trusting the model to recognize injection on its own.
+
+**Implementation Note (Anthropic API):** the concrete mechanism for enforcing this at the model-call level is routing — every non-`system` source_type's content belongs in a `tool_result` block specifically, never in a system prompt or a plain user text block. Claude is specifically trained to apply more skepticism to instructions appearing inside `tool_result` content than content delivered as direct system/user text — so `source_type` tagging and `tool_result`-block placement should be treated as the same discipline, not two separate concerns.
 
 **Where this sits relative to §2's three categories:** `source_type` is metadata layered onto the existing three-category model (Context to guide reasoning / Evidential & factual data / Immediate conversational info) — it does not replace that categorization, it adds an enforceable boundary on top of it. Only `system`-tagged content may ever populate the "Context to guide reasoning" category's instruction-bearing entries; everything else, regardless of which of the three categories it lands in, is treated as evidence or conversation, never as instruction.
 

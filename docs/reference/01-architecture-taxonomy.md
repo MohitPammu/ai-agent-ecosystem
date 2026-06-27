@@ -1,7 +1,8 @@
 # Reference Card 01 — Agent Architecture & Taxonomy
 
-**Card Version:** 3.0
-**Changelog:** §2 — added "Blast radius — involuntary Harness/Orchestrator crash" statement (checkpoint-based recovery, idempotency discipline for in-flight calls). Closure Plan Stage 6.
+**Card Version:** 4.0
+**Changelog:** §2 — added "Implementation Note (LangGraph)" clarifying that the crash-recovery blast-radius statement depends on a durable checkpointer backend, not the default `MemorySaver`. Sourced from a Phase 0 platform/framework docs scan, post-Closure Plan.
+**Changelog (v3.0):** §2 — added "Blast radius — involuntary Harness/Orchestrator crash" statement (checkpoint-based recovery, idempotency discipline for in-flight calls). Closure Plan Stage 6.
 **Changelog (v2.0):** §8's observability field list replaced with a pointer to Card 05 §5 — the restated list had drifted stale (still listed "evaluation score," which Card 05 §5 explicitly excludes). Closure Plan Stage 3.
 
 **Source whitepapers:** Introduction to Agents and Agent Architectures (Nov 2025) · Spec-Driven Production Grade Development (Day 5, May 2026, foundational framing only)
@@ -41,6 +42,8 @@ Every agent, regardless of level, runs the same core cycle — extended here bey
 This loop is the pattern to implement in `core/harness/` — it is framework-agnostic and applies whether the agent is built in LangGraph, ADK, or raw Python. The Validate/Decide stage is what separates a demo loop from a production-grade one: agents do not merely act, they operate within bounded permissions and observable, recoverable execution traces.
 
 **Blast radius — involuntary Harness/Orchestrator crash (distinct from a deliberate `Stop`):** a `Stop` is a logged, intentional Decide outcome; a crash is not. On Harness restart after an involuntary crash, recovery resumes from the last persisted `state` checkpoint (§1's `state` definition) rather than restarting the mission from scratch — in-flight tool calls without a confirmed completion record are treated as failed and subject to the same retry/idempotency discipline as any other tool failure (Card 02 §4), never silently assumed successful. If no checkpoint exists (the crash occurred before the first checkpoint was written), the mission is treated as never having started, and any partial side effects from tool calls made before the crash are exactly why idempotency marking (Card 02 §3) matters at this boundary, not just for ordinary retries.
+
+**Implementation Note (LangGraph):** the above blast-radius statement assumes the persisted `state` checkpoint actually survives the crash — this is not automatic. LangGraph's `MemorySaver` checkpointer only persists state in-process RAM and is lost on any restart, making it unsuitable for anything beyond local development. Production deployment must use a durable checkpointer backend (e.g., `PostgresSaver`, `SqliteSaver`) — defaulting to `MemorySaver` during early development and silently shipping that default would make this section's blast-radius guarantee false in practice.
 
 ## 3. The 5-Level Agent Taxonomy
 
