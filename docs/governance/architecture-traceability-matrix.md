@@ -40,7 +40,7 @@
 | Agent-as-Judge Trace Access / Redaction | Card 06 §10 | Card 05 §4 tier 3 (the dependency being discharged) | Stage 1 (2026-06) |
 | Instruction-Artifact Signing | Card 06 §15 | Card 04 §8 (Skill lifecycle subject to same controls), Card 07 (AGENTS.md as signed artifact, Phase 0 file 0.10) | Stage 1 (2026-06) |
 | Data Classification (monotonic inheritance) | Card 06 §13, §23 | Card 03 (memory consolidation inherits), Card 04 (promotion candidates inherit), Card 05 (trace-based evaluation inherits) | Stage 1 (2026-06) |
-| Classification-Aware Model Routing | Card 06 §26 | Card 01 §1 (zero-cost routing principle being extended), Card 07 §11 (provider approval metadata schema that operationalizes it) | Stage 1 (2026-06) |
+| Classification-Aware Model Routing | Card 06 §26 | Card 01 §1 (zero-cost routing principle being extended), Card 07 §11 (pointer to the operationalizing schema, not the schema itself — see `model-routing-table.md` §4) | Stage 7 follow-up (2026-06) — wording sharpened for traceability |
 | Provider Approval Metadata Schema | `docs/architecture/model-routing-table.md` §4 | Card 06 §26 (tracked item this discharges), Card 07 §11 (pointer only, corrected post-Stage-7) | Stage 7 follow-up (2026-06) — canonical owner moved from Card 07 §11 to the routing table itself |
 | Tier 3/4 Code-Review HITL Citation | Card 07 §6 | Card 06 §3, §14 | **Verified correct, Stage 1 (2026-06) — Progress Log corrected same session** |
 | Three-Tier Code Review | Card 07 §6 | Card 05 §4 (Evaluator Hierarchy it mirrors) | Stage 1 (2026-06) |
