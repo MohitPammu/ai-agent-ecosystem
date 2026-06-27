@@ -49,7 +49,10 @@
 | Alternative-Architecture-Considered Decisions (Tool/Skill Registry separation; Circuit Breaker/Policy Server separation) | Card 02 §5 / Card 04 §6 (Registry separation, documented both sides); Card 06 §11 (Circuit Breaker, documented) | Card 02 §5, Card 04 §6, Card 06 §11 — each now carries its own "Alternative Architecture Considered" note citing `cohesion-reviews/v1/review-reconciliation.md` | Stage 4 (2026-06) — documented in-card |
 | LangGraph Implementation-Note Labeling | Card 03 §4 | Card 03 §4 — LangGraph-specific content now wrapped in `**Implementation Note (LangGraph):**` label, scoped separately from the general ADK-comparison sentence | Stage 4 (2026-06) — relabeled |
 | Blast-Radius / Degradation Behavior (Memory, Registry-file, Evaluation-service, Harness/Orchestrator crash) | Distributed — each component documents its own (Card 03 §12, Card 02 §5, Card 04 §6, Card 05 §5, Card 01 §2) | Card 06 §20 (the fail-closed-by-tier pattern all four extend/defer to) | Stage 6 (2026-06) — all four blast-radius statements documented in-card |
-| Four Missing Foundational Artifacts | Not yet drafted | `agent-contract-template.md`, `AGENTS.md`, `model-routing-table.md`, `tech-stack.md` | **Pending — Stage 7** |
+| Agent Contract Template | `docs/architecture/agent-contract-template.md` | Card 01 §1 (specification origin); cites Card 02 §5, Card 03 §5/§9/§11/§12, Card 04 §6, Card 05 §4/§5/§8, Card 06 §3/§4/§14, Card 07 §8 throughout | Stage 7 (2026-06) — drafted, reviewed twice, approved |
+| AGENTS.md | Not yet drafted | `docs/architecture/agent-contract-template.md`, all 7 cards | **Pending — Stage 7** |
+| model-routing-table.md | Not yet drafted | Card 06 §26, Card 07 §11 | **Pending — Stage 7** |
+| tech-stack.md | Not yet drafted | Card 03 §4 (LangGraph labeling convention) | **Pending — Stage 7** |
 | Card 06 Topic Index | Not yet added | Card 06 (self) | **Pending — Stage 8** |
 | Architecture Decision Records (ADR-001 through ADR-007) | Not yet created | `docs/governance/adr/` | **Pending — Stage 8** |
 | Architecture Verification Specification | Not yet created | `docs/governance/architecture-verification-specification.md` | **Pending — Stage 9** |
