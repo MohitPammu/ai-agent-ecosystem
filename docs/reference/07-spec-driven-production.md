@@ -1,6 +1,7 @@
 # Reference Card 07 — Spec-Driven Production
 
-**Card Version:** 1.0 (Approved)
+**Card Version:** 2.0
+**Changelog:** §11 — replaced restated provider-metadata field list with a pointer to `docs/architecture/model-routing-table.md` §4, the now-canonical schema owner — the routing table's adopted schema (21 fields) substantially exceeded this card's originally-specified minimum (6 fields), and the duplication was already starting to drift stale. Applies the same fix pattern as Card 01 §8 (Closure Plan Stage 3).
 
 **Source whitepapers:** Prototype to Production / AgentOps Lifecycle (2025 Day 5) · Spec-Driven Production Grade Development (2026 Day 5)
 **Governing structure:** This is the final card in the Runtime Stack's knowledge base — it does not introduce a new layer, it defines **how every layer defined in Cards 01-06 actually gets built, shipped, and operated.** Where Cards 01-06 are the architecture, this card is the *production discipline* applied to building that architecture. It also closes the one remaining tracked item from Card 06 §26: provider approval metadata for `model-routing-table.md`.
@@ -92,18 +93,9 @@ Once a component is `BUILT` (per the Master Execution Plan's status flags), depl
 
 ## 11. Provider Approval Metadata — Closing Card 06 §26's Tracked Item
 
-Card 06 §26 required classification-aware model routing but deferred the metadata schema to this card. `docs/architecture/model-routing-table.md` (Phase 0, file 0.9) must include, per provider entry:
+Card 06 §26 requires classification-aware model routing. The metadata schema this routing decision actually checks against at runtime lives in `docs/architecture/model-routing-table.md` §4 (Phase 0, file 0.9) — not restated here, to avoid the exact drift Card 01 §8 demonstrated (Closure Plan Stage 3) when a field list was duplicated across two documents and one silently went stale.
 
-| Field | Purpose |
-|---|---|
-| `provider_approved_for_classes` | Which Card 06 §13 data classifications this provider may legitimately receive |
-| `retention_policy` | The provider's stated data retention behavior |
-| `training_use_allowed` | Whether the provider may use submitted data for model training |
-| `region` / `data_residency` | Where data is processed/stored |
-| `zero_retention_available` | Whether a zero-data-retention tier/setting exists for this provider |
-| `approval_status` | Whether this provider is currently approved for use in this ecosystem, and for which classification levels |
-
-This table is what Card 06 §26's "classification-aware model routing" principle actually checks against at runtime — Ollama (local) trivially satisfies the most restrictive classifications since data never leaves the machine; Gemini Flash and GitHub Models must be evaluated against this table per classification level before being used for Projects 1 or 3's sensitive data specifically.
+Ollama (local) trivially satisfies the most restrictive classifications since data never leaves the machine; every non-local provider must be evaluated against the routing table's schema per classification level before being used for Projects 1 or 3's sensitive data specifically.
 
 **Fleet-governance rollout discipline:** when this question is eventually addressed in Phase 5+, fleet-governance changes (a core Skill update, a Card 06 policy change propagating across multiple simultaneous projects) follow the **same canary and rollback discipline already defined in §9** — this is not a new mechanism to invent later, just an application of one already established here.
 
