@@ -8,7 +8,7 @@
 
 | Concept | Canonical Owner (Card §) | Referencing Cards/Sections | Last Verified |
 |---|---|---|---|
-| Risk Tiers (0-5, default approval requirements) | Card 06 §3 | Card 02 §4 (`risk_tier` field, reference-only), Card 02 §8, Card 04 §5 (Skill Contract implicit risk exposure), Card 05 §4 (tier 4 = HITL), Card 06 §39 (table itself), Card 07 §5, Card 07 §6 | Stage 1 (2026-06) |
+| Risk Tiers (0-5, default approval requirements) | Card 06 §3 | Card 02 §4 (`risk_tier` field, reference-only), Card 02 §8, Card 04 §5 (Skill Contract implicit risk exposure), Card 05 §4 (tier 4 = HITL), Card 06 §3 (table itself), Card 07 §5, Card 07 §6 | Stage 1 (2026-06) |
 | Regulated-Project Risk Tier Override (tightened Tier 2/3 for Projects 1/3) | Card 06 §14 | Card 06 §3 (note pointing to §14), Card 07 §6 | Stage 1 (2026-06) |
 | Agent Contract Standard | Card 01 §1 / `docs/architecture/agent-contract-template.md` (Phase 0, file 0.12) | Card 02 (Tool Contract mirrors pattern), Card 03 §11 (Memory Contracts mirror pattern), Card 04 §5 (Skill Contract mirrors pattern), Card 01 §8 (forward-reference to template file) | Stage 1 (2026-06) |
 | Tool Contract (schema, error contract, observability metadata, risk_tier) | Card 02 §4 | Card 01 §8 (forward-reference), Card 05 §3 (tool-usage failure category), Card 05 §6 (error categories consume failure taxonomy), Card 06 §3/§4 (`risk_tier` resolves against Card 06's table), Card 06 §20 (binding-check sequencing), Card 07 §2 (YAML field types example) | Stage 1 (2026-06) |
