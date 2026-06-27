@@ -51,7 +51,7 @@
 | Blast-Radius / Degradation Behavior (Memory, Registry-file, Evaluation-service, Harness/Orchestrator crash) | Distributed — each component documents its own (Card 03 §12, Card 02 §5, Card 04 §6, Card 05 §5, Card 01 §2) | Card 06 §20 (the fail-closed-by-tier pattern all four extend/defer to) | Stage 6 (2026-06) — all four blast-radius statements documented in-card |
 | Agent Contract Template | `docs/architecture/agent-contract-template.md` | Card 01 §1 (specification origin); cites Card 02 §5, Card 03 §5/§9/§11/§12, Card 04 §6, Card 05 §4/§5/§8, Card 06 §3/§4/§14, Card 07 §8 throughout | Stage 7 (2026-06) — drafted, reviewed twice, approved |
 | AGENTS.md | `AGENTS.md` (repo root) | Card 01 §1/§2/§3, Card 02 §5, Card 03 §5/§10/§12, Card 04 §6, Card 05 §4/§5, Card 06 §3/§4/§14/§15/§18, Card 07 §6/§8/§9, `docs/architecture/agent-contract-template.md` — cites all 7 cards throughout, restates none | Stage 7 (2026-06) — drafted, reviewed, approved |
-| model-routing-table.md | Not yet drafted | Card 06 §26, Card 07 §11 | **Pending — Stage 7** |
+| model-routing-table.md | `docs/architecture/model-routing-table.md` | Card 01 §4 (specialist-model routing principle), Card 06 §13/§23/§26 (classification-aware routing, binding rule), Card 07 §11 (provider metadata schema — table's adopted schema now exceeds this minimum, flagged for a Card 07 edit) | Stage 7 (2026-06) — drafted, reviewed twice, frozen at 1.0 |
 | tech-stack.md | Not yet drafted | Card 03 §4 (LangGraph labeling convention) | **Pending — Stage 7** |
 | Card 06 Topic Index | Not yet added | Card 06 (self) | **Pending — Stage 8** |
 | Architecture Decision Records (ADR-001 through ADR-007) | Not yet created | `docs/governance/adr/` | **Pending — Stage 8** |
