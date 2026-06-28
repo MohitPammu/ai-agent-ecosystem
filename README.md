@@ -93,7 +93,7 @@ ai-agent-ecosystem/
 - **Orchestration:** LangGraph
 - **Model layer:** Local inference via Ollama, Google Gemini Flash (free tier), GitHub Models (via existing Copilot subscription) — routed by task complexity, see `docs/architecture/model-routing-table.md`
 - **Memory:** Local vector store (semantic memory) + PostgreSQL (structured records)
-- **Observability:** OpenTelemetry-style tracing
+- **Observability:** OpenTelemetry + self-hosted Jaeger — see `docs/architecture/tech-stack.md` for full rationale
 - **Tool protocol:** Model Context Protocol (MCP)
 - **Language:** Python 3.12
 
