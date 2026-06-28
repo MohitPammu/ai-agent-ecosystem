@@ -67,11 +67,11 @@ ai-agent-ecosystem/
 ├── AGENTS.md               # Master ecosystem specification — signed instruction artifact, v1.0 (Closure Plan Stage 7)
 ├── docs/
 │   ├── reference/          # Distilled architecture reference cards (the knowledge base) — all 7 APPROVED
-│   ├── architecture/       # agent-contract-template.md done (Stage 7); model-routing-table.md, tech-stack.md in progress
+│   ├── architecture/       # All 3 architecture artifacts complete (Stage 7): agent-contract-template.md, model-routing-table.md, tech-stack.md
 │   ├── specs/              # BDD-style specs for core components, written before code (Phase 1+)
 │   └── governance/         # Review/QA artifacts — emerged organically during Phase 0, not originally planned
 │       ├── ecosystem-cohesion-review-rubric.md         # Frozen v1.0 — reusable beyond this project
-│       ├── PHASE-0-CLOSURE-PLAN.md                     # Active sequential remediation plan — Stages 1-6 complete, Stage 7 in progress
+│       ├── PHASE-0-CLOSURE-PLAN.md                     # Active sequential remediation plan — Stages 1-7 complete, Stage 8 next
 │       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2) — living document, updated every stage
 │       ├── architecture-verification-specification.md  # Post-implementation test plan (Closure Plan Stage 9, not yet created)
 │       ├── adr/                                        # Architecture Decision Records (Closure Plan Stage 8, not yet populated)
@@ -101,7 +101,7 @@ Full rationale documented in `docs/architecture/tech-stack.md`.
 
 ## Build Status
 
-**Phase 0 (Foundation Documents) is in its final stretch.** All 7 reference cards are `APPROVED`. The Phase 0 Closure Plan — a 10-stage sequential remediation process (Stages 1-10, plus a procedural Stage 0) that emerged from independent architecture review — has completed Stages 1-6 (forward-reference audit, traceability matrix, factual-contradiction fixes, anti-bloat documentation, the untrusted-context-boundary mechanism, and blast-radius/degradation statements across every major component). Stage 7 (the four missing foundational artifacts) is in progress: `AGENTS.md` and `agent-contract-template.md` are complete; `model-routing-table.md` and `tech-stack.md` remain. Stage 8 (Card 06 index + ADRs), Stage 9 (the architecture verification specification), and **Stage 10 (re-scoring the rubric against the corrected card set — the actual closure gate)** are next, after which Phase 0 closes and Phase 1 (Core Infrastructure) begins.
+**Phase 0 (Foundation Documents) is in its final stretch.** All 7 reference cards are `APPROVED`. The Phase 0 Closure Plan — a 10-stage sequential remediation process (Stages 1-10, plus a procedural Stage 0) that emerged from independent architecture review — has completed Stages 1-6 (forward-reference audit, traceability matrix, factual-contradiction fixes, anti-bloat documentation, the untrusted-context-boundary mechanism, and blast-radius/degradation statements across every major component). Stage 7 (the four missing foundational artifacts — `AGENTS.md`, `agent-contract-template.md`, `model-routing-table.md`, `tech-stack.md`) is now **complete**. Stage 8 (Card 06 index + ADRs), Stage 9 (the architecture verification specification), and **Stage 10 (re-scoring the rubric against the corrected card set — the actual closure gate)** are next, after which Phase 0 closes and Phase 1 (Core Infrastructure) begins.
 
 See `00-MASTER-EXECUTION-PLAN.md` for the complete phase-by-phase roadmap, current status of every component, and a running progress log of design decisions.
 
