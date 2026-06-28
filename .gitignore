@@ -9,3 +9,16 @@ projects/*/data/*.csv
 projects/*/data/*.parquet
 *.log
 .ipynb_checkpoints/
+
+# Secrets and credentials
+*.key
+*.pem
+*.crt
+secrets/
+credentials.json
+*_credentials.json
+config/secrets*
+
+# Note: notebook output-stripping (nbstripout) considered but not yet adopted —
+# see Master Plan Deferred list. Do not blanket-exclude *.ipynb; that would
+# also exclude notebook source code, not just outputs.
