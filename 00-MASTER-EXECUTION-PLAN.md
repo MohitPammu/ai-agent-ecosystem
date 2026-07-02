@@ -251,8 +251,6 @@ Items that are genuinely worth doing but deliberately deferred to a better-timed
 
 | Item | Why deferred | Best time to revisit | Status |
 |---|---|---|---|
-| **`implementation_reference` naming** (generic pointer vs. `implementation_module`/`implementation_package`) on the Agent Contract Template | Stage 7 production-readiness review (Revision 2) | Once `tech-stack.md` (Stage 7, Action 4) settles actual language/packaging conventions | Pending |
-| **`related_adr` field** on the Agent Contract Template's Artifact References section | Stage 7 production-readiness review (Revision 2) | Once Stage 8 produces ADR-001 through 007 — adding a pointer to documents that don't exist yet is premature | Pending |
 | **Docs site** (e.g., `mkdocs` + GitHub Pages, turning `docs/` into a browsable site) | Premature with only 3-7 reference cards; pays off once specs, reference cards, and architecture docs are numerous enough that flat markdown browsing on GitHub becomes unwieldy | Once all 7 reference cards + Phase 0 architecture docs are approved | Pending |
 
 ### Trigger: Phase 0 → Phase 1 transition (after Closure Plan closes, before first Phase 1 code)
