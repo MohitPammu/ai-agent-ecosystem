@@ -1,12 +1,39 @@
 # Reference Card 06 — Security & Governance
 
-**Card Version:** 3.0
-**Changelog:** Untrusted context boundary citation corrected from "Card 03 §2-3" to "Card 03 §12" — now points to the actual operationalized mechanism added in Card 03's Stage 5 edit, closing the last Stage 1 defect. Closure Plan Stage 5.
+**Card Version:** 4.0
+**Changelog:** Added topic index after Purpose — maps all 26+ sections to topic clusters for navigation without a full read-through. Closure Plan Stage 8, Action 1.
+**Changelog (v3.0):** Untrusted context boundary citation corrected from "Card 03 §2-3" to "Card 03 §12" — now points to the actual operationalized mechanism added in Card 03's Stage 5 edit, closing the last Stage 1 defect. Closure Plan Stage 5.
 **Changelog (v2.0):** §11 — added "Alternative Architecture Considered" note documenting why the Circuit Breaker is kept separate from the Policy Server, per Closure Plan Stage 4.
 
 **Source whitepaper:** Vibe Coding Agent Security and Evaluation (2026 Day 4, security half)
 **Governing structure:** Sits at the base of the Runtime Stack — Security governs every layer above it (Tools, Memory, State, Harness, Contract), not the reverse. This card discharges the largest backlog of any card in the ecosystem so far. Every item below references exactly which earlier card raised it.
 **Purpose:** Defines the 7-Pillar Security Architecture, risk tiers, the full Permission Model, sandboxing requirements, A2A trust boundaries, registry integrity, memory governance authorization, and the enforcement boundary for Safety evaluation — closing every forward-reference accumulated across Cards 01-05.
+
+---
+
+## Topic Index
+
+**7 Pillars overview:** §2
+**Risk Tiers (definition + table):** §3 · **Regulated-project override (Projects 1/3):** §14
+**Permission Model (ABAC + JIT):** §4 · **JIT Token lifecycle:** §18
+**Policy Server (mechanics):** §4 · **Failure mode (fail-closed table):** §20 · **Integrity + change control:** §21 · **Policy versioning:** §22
+**Circuit Breaker (blast radius, quarantine):** §11
+**Sandboxing:** §5
+**Data Classification (taxonomy, assignment, inheritance):** §13 · §23
+**Registries (integrity, runtime verification):** §7 · §16
+**Memory governance authorization:** §8
+**A2A trust + delegation:** §6 · §17
+**Safety Evaluation enforcement boundary:** §9 · §9a
+**Instruction-artifact signing:** §15
+**Audit trail (minimums, provenance):** §12 · §26
+**HITL reviewer authorization + separation of duties:** §24
+**Break-glass (hardened constraints):** §25
+**Egress governance:** §19
+**Security Event Schema:** §11
+**Red Team / Green Team definitions:** §10 · §11
+**Supply chain scope:** §26
+**Classification-aware model routing:** §26
+**Untrusted context boundary:** §26 (see Card 03 §12 for the mechanism)
 
 ---
 
