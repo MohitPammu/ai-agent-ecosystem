@@ -71,7 +71,7 @@ ai-agent-ecosystem/
 │   ├── specs/              # BDD-style specs for core components, written before code (Phase 1+)
 │   └── governance/         # Review/QA artifacts — emerged organically during Phase 0, not originally planned
 │       ├── ecosystem-cohesion-review-rubric.md         # Frozen v1.0 — reusable beyond this project
-│       ├── PHASE-0-CLOSURE-PLAN.md                     # Active sequential remediation plan — Stages 1-7 complete, Stage 8 next
+│       ├── PHASE-0-CLOSURE-PLAN.md                     # Active sequential remediation plan — Stages 1-8 complete, Stage 9 next
 │       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2) — living document, updated
  every stage
 │       ├── architecture-verification-specification.md  # Post-implementation test plan (Closure Plan Stage 9, not yet created)
