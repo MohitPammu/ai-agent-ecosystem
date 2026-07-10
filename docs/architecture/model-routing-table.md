@@ -1,7 +1,7 @@
 # Model Routing Table
 ## AI Agent Ecosystem
 
-**Status:** 1.0 (Draft) — structurally usable for routing, but external-provider approvals remain limited by the policy evidence below.
+**Status:** 1.0 (Approved) — external-provider approvals remain limited by the policy evidence below; provider rows must be re-verified before any Tier 2+ routing decision.
 
 **Purpose:** Operationalizes Card 01 §4's specialist-model routing principle and Card 06 §26's classification-aware model routing requirement. This file is the routing control used by `core/harness/` and Agent Contracts. It applies canonical architecture rules; it does not redefine Card 01, Card 06, or Card 07.
 
@@ -349,9 +349,9 @@ No content from either framework is reproduced or adopted as binding — Cards 0
 
 | Field | Value |
 |---|---|
-| **Status** | 1.0 (Draft) |
-| **Approved by** | _pending_ |
-| **Approval date** | _pending_ |
+| **Status** | 1.0 (Approved) |
+| **Approved by** | Mohit Pammu |
+| **Approval date** | 2026-06 |
 
 **Versioning note:** follows the same convention as Cards 01-07 — version increments by one integer per substantive edit (1.0 → 2.0 → 3.0...), with a one-line changelog added at the point of each edit, once approved. No decimal sub-versioning.
 
