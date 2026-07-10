@@ -55,7 +55,7 @@
 | tech-stack.md | `docs/architecture/tech-stack.md` | Card 01 §2/§4, Card 03 §4/§5, Card 05 §5, Card 06 §4/§5/§11/§15/§16/§20/§21, Card 07 (spec-driven testing discipline) — cites throughout, restates none | Stage 7 (2026-06) — drafted, reviewed twice, frozen at 1.0. **All four Stage 7 artifacts now complete.** |
 | Card 06 Topic Index | Card 06 (before §1, after Purpose line) | Card 06 (self — navigates all 26+ sections without a full read-through) | Stage 8 (2026-06) — added, Card 06 v4.0 |
 | Architecture Decision Records (ADR-001 through ADR-007) | `docs/governance/adr/ADR-001` through `ADR-007` | Cards 01-07 throughout (each ADR cites its canonical card sections); cross-referenced to each other as an architectural narrative chain | Stage 8 (2026-06) — all 7 drafted, reviewed, approved |
-| Architecture Verification Specification | Not yet created | `docs/governance/architecture-verification-specification.md` | **Pending — Stage 9** |
+| Architecture Verification Specification | `docs/governance/architecture-verification-specification.md` | Cards 01-07 throughout (18 scenarios, each citing canonical card sections); ADR-001 (implicit in all Security boundary scenarios) | Stage 9 (2026-06) — drafted, reviewed, approved. Planning artifact only — execution begins Phase 1. |
 
 ---
 
