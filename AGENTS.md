@@ -1,6 +1,6 @@
 # AGENTS.md — AI Agent Ecosystem Master Specification
 
-**Status:** Draft — awaiting review and approval
+**Status:** 1.0 (Approved)
 **Artifact Classification:** Signed Instruction Artifact (Card 06 §15) — any future change to this file requires the same signing/approval discipline as any other instruction artifact, because every agent in this ecosystem treats this file's content as `system`-tagged, instruction-bearing context (Card 03 §12).
 
 ---
@@ -83,6 +83,6 @@ This file does not redefine, restate, or summarize-in-a-way-that-could-drift any
 
 | Field | Value |
 |---|---|
-| **Version** | 1.0 (Draft) |
-| **Approved by** | _pending_ |
-| **Approval date** | _pending_ |
+| **Status** | 1.0 (Approved) |
+| **Approved by** | Mohit Pammu |
+| **Approval date** | 2026-06 |
