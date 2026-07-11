@@ -71,16 +71,19 @@ ai-agent-ecosystem/
 │   ├── specs/              # BDD-style specs for core components, written before code (Phase 1+)
 │   └── governance/         # Review/QA artifacts — emerged organically during Phase 0, not originally planned
 │       ├── ecosystem-cohesion-review-rubric.md         # Frozen v1.0 — reusable beyond this project
-│       ├── PHASE-0-CLOSURE-PLAN.md                     # Active sequential remediation plan — Stages 1-9 complete, Stage 10 next
+│       ├── PHASE-0-CLOSURE-PLAN.md                     # Complete — all 10 stages done, Phase 0 frozen at v0.1.0-phase0-freeze
 │       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2) — living document, updated
  every stage
-│       ├── architecture-verification-specification.md  # Post-implementation test plan — 22 scenarios across 7 groups (Closure Plan Stage 9, complete)
+│       ├── architecture-verification-specification.md  # Post-implementation test plan — 38 scenarios (Closure Plan Stage 9, complete, 1.0 Approved)
 │       ├── adr/                                        # Architecture Decision Records — ADR-001 through ADR-007 (Closure Plan Stage 8, complete)
 │       └── cohesion-reviews/v1/                        # Versioned historical review snapshot
 │           ├── claude/                                 # 4-part independent review
 │           ├── chatgpt/                                # 4-part independent review
 │           ├── architecture-review-board-synthesis.md
-│           └── review-reconciliation.md
+│           ├── review-reconciliation.md
+│           ├── stage-10-internal-rescore.md
+│           ├── stage-10-external-rescore.md
+│           └── stage-10-reconciliation.md
 ├── core/                   # The reusable "factory" — orchestrator, harness, memory, evaluation, observability, security
 ├── skills/                 # Reusable SKILL.md library shared across all projects
 ├── mcp-servers/            # MCP tool connectors (file system, database, APIs)
@@ -102,7 +105,7 @@ Full rationale documented in `docs/architecture/tech-stack.md`.
 
 ## Build Status
 
-**Phase 0 (Foundation Documents) is in its final stretch.** All 7 reference cards are `APPROVED`. The Phase 0 Closure Plan — a 10-stage sequential remediation process (Stages 1-10, plus a procedural Stage 0) that emerged from independent architecture review — has completed Stages 1-6 (forward-reference audit, traceability matrix, factual-contradiction fixes, anti-bloat documentation, the untrusted-context-boundary mechanism, and blast-radius/degradation statements across every major component). Stage 7 (the four missing foundational artifacts — `AGENTS.md`, `agent-contract-template.md`, `model-routing-table.md`, `tech-stack.md`) is now **complete**. Stage 8 (Card 06 index + 7 ADRs) is now **complete**. Stage 9 (the architecture verification specification) is now **complete** — 22 scenarios across 7 groups, each with a concrete pass criterion, tagged `[PHASE 1]` or `[PHASE 3+]`. **Stage 10 (re-scoring the rubric against the corrected card set — the actual closure gate)** is next, after which Phase 0 closes and Phase 1 (Core Infrastructure) begins.
+**Phase 0 is now complete.** All 10 Closure Plan stages are done — the architecture has been reviewed, corrected, and verified by dual independent reviews (internal + cold-read external), producing a reconciled FREEZE-READY-WITH-MINOR-PATCHES verdict. All 5 pre-freeze patches have been applied and verified. The Phase 0 freeze tag (`v0.1.0-phase0-freeze`) marks the architecture as frozen. Phase 1 (Core Infrastructure) begins next — building `core/harness/`, `core/memory/`, `core/security/`, `core/evaluation/`, and `core/observability/` against the 6 mandatory pre-build specs (S1-S6) before the first portfolio project implementation begins.
 
 See `00-MASTER-EXECUTION-PLAN.md` for the complete phase-by-phase roadmap, current status of every component, and a running progress log of design decisions.
 
