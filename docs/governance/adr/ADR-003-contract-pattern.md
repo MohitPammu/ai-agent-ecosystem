@@ -1,7 +1,8 @@
 # ADR-003 — The Contract Pattern (Agent, Tool, Memory, Skill)
 
 **Status:** Accepted
-**Date:** 2026-06
+**Date:** 2026-07-11
+**Changelog:** Added lifecycle wording clarification to Decision section — "shared governance philosophy" means shared principles, not identical stage names/counts. Patch 3, Stage 10 pre-freeze.
 **Discharges:** Synthesis B3 (Architecture Decision Records)
 
 ---
@@ -25,6 +26,8 @@ The ecosystem has four distinct governed artifact types: Agents, Tools, Memory, 
 ## Decision
 
 All four governed artifact types follow the same Contract pattern: a structured declaration of identity, scope, ownership, access, success/failure behavior, and lifecycle status — drafted and approved before implementation, not documented after the fact. The four types (Agent Contract, Tool Contract, Memory Contract, Skill Contract) share the same governance philosophy while maintaining separate schemas appropriate to their distinct concerns.
+
+**Lifecycle wording clarification:** "share the same governance philosophy" means shared *principles* — proposal, human review, activation, deprecation — not a uniform, identically-named lifecycle. Each type owns its own exact stage names and count: Tools move through a 9-stage lifecycle (Card 02 §6: Proposed → Designed → Security Reviewed → Built → Tested → Certified → Active → Deprecated → Retired); Skills move through a 6-stage lifecycle (Card 04 §8: Proposed → Drafted → Reviewed → Active → Deprecated → Retired). Both satisfy the same underlying principle — nothing reaches an active, callable/loadable state without human review — expressed through type-appropriate stages.
 
 ---
 

@@ -1,7 +1,8 @@
 # ADR-006 — Tool Registry vs. Skill Registry: Kept Separate
 
 **Status:** Accepted
-**Date:** 2026-06
+**Date:** 2026-07-11
+**Changelog:** Rationale corrected — removed inaccurate "binary Active/Deprecated lifecycle" claim; Tool lifecycle is Card 02 §6's actual 9-stage sequence. Patch 3, Stage 10 pre-freeze.
 **Discharges:** Synthesis B3 (Architecture Decision Records) — formally records the Stage 4 reconciled decision
 
 ---
@@ -30,7 +31,7 @@ Tool Registry and Skill Registry are kept separate. A unified Capability Registr
 
 ## Rationale
 
-A Tool is a callable function with a fixed input/output contract and a binary Active/Deprecated lifecycle — it is executed, not read. A Skill is instructional content with no callable contract, promoted into existence via a human-reviewed process (Card 04 §8) rather than registered as a pre-built executable — it is loaded and interpreted, not called. Merging them would force one schema to serve two fundamentally different governance semantics: executable capability vs. procedural knowledge. The binding rule for each type is also different — a Tool binding check is performed at call time (Card 02 §5), while a Skill loading check is performed at context-assembly time (Card 04 §6). Separate registries means separate binding rules can evolve independently.
+A Tool is a callable function with a fixed input/output contract, moving through the 9-stage lifecycle Card 02 §6 defines (Proposed → Designed → Security Reviewed → Built → Tested → Certified → Active → Deprecated → Retired) — it is executed, not read. A Skill is instructional content with no callable contract, promoted into existence via a human-reviewed process (Card 04 §8) rather than registered as a pre-built executable, moving through its own 6-stage lifecycle — it is loaded and interpreted, not called. Merging them would force one schema to serve two fundamentally different governance semantics: executable capability vs. procedural knowledge. The binding rule for each type is also different — a Tool binding check is performed at call time (Card 02 §5), while a Skill loading check is performed at context-assembly time (Card 04 §6). Separate registries means separate binding rules can evolve independently.
 
 ---
 
