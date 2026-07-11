@@ -1,7 +1,7 @@
 # ADR-007 — Circuit Breaker vs. Policy Server: Kept Separate
 
 **Status:** Accepted
-**Date:** 2026-06
+**Date:** 2026-07-02
 **Discharges:** Synthesis B3 (Architecture Decision Records) — formally records the Stage 4 reconciled decision
 
 ---

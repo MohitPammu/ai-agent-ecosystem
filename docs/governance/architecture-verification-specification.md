@@ -233,6 +233,6 @@ These are architectural SLA expectations, not implementation benchmarks — they
 |---|---|
 | **Status** | 1.0 (Approved) |
 | **Approved by** | Mohit Pammu |
-| **Approval date** | 2026-06 |
+| **Approval date** | 2026-07-10 |
 
 **Versioning note:** follows the same convention as the other Phase 0 artifacts — version increments by one integer per substantive edit, with a stacked changelog added at the point of each edit, once approved.

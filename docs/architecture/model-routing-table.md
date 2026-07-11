@@ -351,7 +351,7 @@ No content from either framework is reproduced or adopted as binding — Cards 0
 |---|---|
 | **Status** | 1.0 (Approved) |
 | **Approved by** | Mohit Pammu |
-| **Approval date** | 2026-06 |
+| **Approval date** | 2026-06-27 |
 
 **Versioning note:** follows the same convention as Cards 01-07 — version increments by one integer per substantive edit (1.0 → 2.0 → 3.0...), with a one-line changelog added at the point of each edit, once approved. No decimal sub-versioning.
 

@@ -1,7 +1,7 @@
 # ADR-001 — Runtime Stack Ordering
 
 **Status:** Accepted
-**Date:** 2026-06
+**Date:** 2026-07-02
 **Discharges:** Synthesis B3 (Architecture Decision Records)
 
 ---

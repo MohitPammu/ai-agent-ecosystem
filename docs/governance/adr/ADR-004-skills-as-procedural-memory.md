@@ -1,7 +1,7 @@
 # ADR-004 — Skills as Promoted Procedural Memory
 
 **Status:** Accepted
-**Date:** 2026-06
+**Date:** 2026-07-02
 **Discharges:** Synthesis B3 (Architecture Decision Records)
 
 ---
