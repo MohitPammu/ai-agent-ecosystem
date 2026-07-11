@@ -1,7 +1,8 @@
 # AGENTS.md — AI Agent Ecosystem Master Specification
 
-**Status:** 2.0 (Approved)
-**Changelog:** §4 — corrected "Layer 4 (Skills)" wording; Skills occupy the same capability tier as Tools, not a separately numbered stack layer. Patch 2, Stage 10 pre-freeze.
+**Status:** 3.0 (Approved)
+**Changelog:** §4 — "layered stack" description updated to "authority and ownership hierarchy" framing, consistent with ADR-001's Patch 4 correction. Patch 4, Stage 10 pre-freeze.
+**Changelog (v2.0):** §4 — corrected "Layer 4 (Skills)" wording; Skills occupy the same capability tier as Tools, not a separately numbered stack layer. Patch 2, Stage 10 pre-freeze.
 **Artifact Classification:** Signed Instruction Artifact (Card 06 §15) — any future change to this file requires the same signing/approval discipline as any other instruction artifact, because every agent in this ecosystem treats this file's content as `system`-tagged, instruction-bearing context (Card 03 §12).
 
 ---
@@ -22,7 +23,7 @@ This repository implements the architecture defined by the seven approved Refere
 
 ## 4. The Runtime Stack
 
-Every agent operates within this layered stack (Master Execution Plan's governing structure, reiterated here because it determines which card governs which question):
+Every agent operates within this layered **authority and ownership hierarchy** (Master Execution Plan's governing structure, reiterated here because it determines which card governs which question):
 
 1. **Contract** — Card 01 §1. What an agent is, declared.
 2. **Harness / Orchestration** — Card 01 §2. The Plan→Act→Observe→Decide loop every agent runs.

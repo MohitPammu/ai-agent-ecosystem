@@ -2,13 +2,14 @@
 
 **Status:** Accepted
 **Date:** 2026-07-02
+**Changelog:** 2026-07-11 — Context section: "strict dependency hierarchy" → "authority and ownership hierarchy." Rationale: added clarification distinguishing authority ordering from bidirectional runtime interaction flows. Patch 4, Stage 10 pre-freeze.
 **Discharges:** Synthesis B3 (Architecture Decision Records)
 
 ---
 
 ## Context
 
-The ecosystem requires a strict dependency hierarchy governing which layer owns which concern. Without an explicit ordering, cards could contradict each other's authority — e.g., a Tools card claiming to govern Security concerns, or a Memory card claiming to govern Orchestration behavior.
+The ecosystem requires an authority and ownership hierarchy governing which layer owns which concern. Without an explicit ordering, cards could contradict each other's authority — e.g., a Tools card claiming to govern Security concerns, or a Memory card claiming to govern Orchestration behavior.
 
 ---
 
@@ -41,6 +42,8 @@ Security & Governance sits at the base. Every layer above it is governed by Secu
 ## Rationale
 
 Placing Security at the base — rather than treating it as a cross-cutting concern or a peer layer — means the ownership question for every enforcement decision resolves unambiguously: if two layers conflict, the lower layer wins. This is the governing principle that allowed Cards 02, 03, 04, and 05 to all defer permission enforcement, sandbox requirements, and authorization decisions explicitly to Card 06, without any of those cards needing to know how Card 06 implements them. The stack ordering is the single fact that makes every "X is Card 06's responsibility, not ours" statement in the card set correct.
+
+**Clarification — authority ordering vs. runtime interaction flows:** this hierarchy defines who *governs* each layer, not the direction of all runtime data flows. Lower layers may legitimately consume signals from higher layers through named, explicitly-defined interfaces — for example, Security consumes observability events from Evaluation (Card 05 §5), the Circuit Breaker receives signals from the Harness and Evaluation, and the Policy Server receives revocation requests from the Circuit Breaker (ADR-007). These bidirectional runtime flows are consistent with the authority ordering, not in conflict with it: Security's position at the base means it *governs* these layers, not that it is *unreachable* from them.
 
 ---
 
