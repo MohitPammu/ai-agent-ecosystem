@@ -1,6 +1,7 @@
 # AGENTS.md — AI Agent Ecosystem Master Specification
 
-**Status:** 1.0 (Approved)
+**Status:** 2.0 (Approved)
+**Changelog:** §4 — corrected "Layer 4 (Skills)" wording; Skills occupy the same capability tier as Tools, not a separately numbered stack layer. Patch 2, Stage 10 pre-freeze.
 **Artifact Classification:** Signed Instruction Artifact (Card 06 §15) — any future change to this file requires the same signing/approval discipline as any other instruction artifact, because every agent in this ecosystem treats this file's content as `system`-tagged, instruction-bearing context (Card 03 §12).
 
 ---
@@ -31,7 +32,7 @@ Every agent operates within this layered stack (Master Execution Plan's governin
 6. **Evaluation / Observability** — Card 05. How quality is measured and traced.
 7. **Security / Governance** — Card 06. Authorization, sandboxing, audit — and because Security sits below Tools/Memory in this stack, **Security governs those layers, never the reverse.**
 
-Layer 4 (Skills, Card 04) sits alongside Tools/Memory as a third capability type — instructional content rather than callable function or stored fact.
+Skills (Card 04) occupy the same capability tier as Tools (Card 02) — not a separately numbered layer — distinguished by governance semantics: instructional content rather than a callable function.
 
 ## 5. Every Agent Is Built From a Contract
 

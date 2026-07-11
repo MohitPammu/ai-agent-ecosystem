@@ -1,7 +1,8 @@
 # Reference Card 02 — Tools, MCP & Interoperability
 
-**Card Version:** 3.0
-**Changelog:** §5 — added "Blast radius — whole-registry-file unavailability" statement (system-wide fail-closed on Registry file loss, distinct from Card 06 §16's single-bad-entry case). Closure Plan Stage 6.
+**Card Version:** 4.0
+**Changelog:** §3 heading corrected from "Six" to "Seven" Tool Design Principles — the section already enumerated seven principles; the heading was incorrect. Patch 2, Stage 10 pre-freeze.
+**Changelog (v3.0):** §5 — added "Blast radius — whole-registry-file unavailability" statement (system-wide fail-closed on Registry file loss, distinct from Card 06 §16's single-bad-entry case). Closure Plan Stage 6.
 **Changelog (v2.0):** §5 — added "Alternative Architecture Considered" note documenting why the Tool Registry is kept separate from Card 04's Skill Registry, per Closure Plan Stage 4.
 
 **Source whitepapers:** Agent Tools & Interoperability (2025 Day 2, full depth) · Agent Tools & Interoperability (2026 Day 2, MCP architecture)
@@ -28,7 +29,7 @@ Communication runs over **JSON-RPC** — a lightweight, language-agnostic messag
 
 **Server vs. tool — not the same unit:** one MCP server can expose multiple distinct tools (e.g., the PostgreSQL connector might expose both a `read_claims_table` tool and a `read_provider_table` tool). Each exposed tool gets its own Tool Contract (§4) and its own Registry entry (§5) and moves through its own Lifecycle (§6) independently — a server can remain `Active` while one specific tool it exposes is `Deprecated`. Registry and lifecycle tracking therefore applies at the tool-capability level, not merely at the server level.
 
-## 3. Six Tool Design Principles
+## 3. Seven Tool Design Principles
 
 Good tool design determines whether an agent uses a tool correctly or hallucinates its way through it. Apply these to every tool we build:
 

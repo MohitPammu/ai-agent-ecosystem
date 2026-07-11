@@ -1,7 +1,8 @@
 # Reference Card 04 — Agent Skills Framework
 
-**Card Version:** 3.0
-**Changelog:** §6 — added "Blast radius — whole-registry-file unavailability" statement, mirroring Card 02 §5's Tool Registry case. Closure Plan Stage 6.
+**Card Version:** 4.0
+**Changelog:** §7 — "executable procedural (or reference) knowledge" corrected to "runtime-loadable procedural (or reference) knowledge" — the word "executable" contradicted §1's own definition of a Skill as instructional content, not a callable function. Patch 2, Stage 10 pre-freeze.
+**Changelog (v3.0):** §6 — added "Blast radius — whole-registry-file unavailability" statement, mirroring Card 02 §5's Tool Registry case. Closure Plan Stage 6.
 **Changelog (v2.0):** §6 — added "Alternative Architecture Considered" note documenting why the Skill Registry is kept separate from Card 02's Tool Registry, per Closure Plan Stage 4.
 
 **Source whitepaper:** Agent Skills (2026 Day 3)
@@ -95,7 +96,7 @@ Registry entry fields (mirroring Card 02 §5's Tool Registry table):
 
 A Skill is distinct from prompt templates, runbooks, policies, or checklists that might superficially look similar as markdown files:
 
-> A Skill is executable procedural (or reference) knowledge specifically packaged for **dynamic runtime loading** into an agent's context via the Progressive Disclosure mechanism (§3) — selected by the orchestrator based on task relevance. A prompt template, runbook, or policy document is typically **statically embedded** into a system prompt or referenced by a human, not dynamically discovered and loaded by an agent at runtime.
+> A Skill is runtime-loadable procedural (or reference) knowledge specifically packaged for **dynamic runtime loading** into an agent's context via the Progressive Disclosure mechanism (§3) — selected by the orchestrator based on task relevance. A prompt template, runbook, or policy document is typically **statically embedded** into a system prompt or referenced by a human, not dynamically discovered and loaded by an agent at runtime.
 
 If a piece of content is always loaded regardless of task (e.g., core system instructions), it belongs in AGENTS.md or the agent's static system prompt — not packaged as a Skill. If it's conditionally relevant and benefits from being loaded only when needed, it's a Skill candidate.
 

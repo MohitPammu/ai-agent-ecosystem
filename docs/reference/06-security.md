@@ -1,7 +1,8 @@
 # Reference Card 06 — Security & Governance
 
-**Card Version:** 4.0
-**Changelog:** Added topic index after Purpose — maps all 26+ sections to topic clusters for navigation without a full read-through. Closure Plan Stage 8, Action 1.
+**Card Version:** 5.0
+**Changelog:** §4 — added "Terminology clarification — logical vs. implementation" paragraph distinguishing the logical Policy Authority role from its current OPA WASM-embedded implementation. Patch 2, Stage 10 pre-freeze.
+**Changelog (v4.0):** Added topic index after Purpose — maps all 26+ sections to topic clusters for navigation without a full read-through. Closure Plan Stage 8, Action 1.
 **Changelog (v3.0):** Untrusted context boundary citation corrected from "Card 03 §2-3" to "Card 03 §12" — now points to the actual operationalized mechanism added in Card 03's Stage 5 edit, closing the last Stage 1 defect. Closure Plan Stage 5.
 **Changelog (v2.0):** §11 — added "Alternative Architecture Considered" note documenting why the Circuit Breaker is kept separate from the Policy Server, per Closure Plan Stage 4.
 
@@ -82,6 +83,8 @@ Full mechanics for the fields Card 02 deferred:
 - **The Intent × User × Time matrix**: the actual access decision is a function of all three — not just "is this agent allowed to use this tool" in isolation, but "is this agent, acting on this specific intent, on behalf of this user, within this time window, allowed to do this right now"
 
 **Direct implication for Card 02's binding rule:** the 4-condition check (registered/assigned/Active/MCP-compatible) is necessary but not sufficient — the Policy Server's ABAC+JIT evaluation is the actual enforcement layer underneath that check, evaluated fresh per call, not cached.
+
+**Terminology clarification — logical vs. implementation:** "Policy Server" throughout this card names a **logical Policy Authority** — the architectural role responsible for ABAC+JIT decisions, registry write authority, memory governance, and Safety enforcement. It does not imply a standalone deployed service. The current implementation (`tech-stack.md` Decision #7) realizes this role via OPA compiled to WASM and evaluated in-process — no separate server process runs. Wherever this card or others say "Policy Server," read it as "the logical Policy Authority, currently implemented as an embedded OPA evaluator" — the distinction matters because a future implementation change (e.g., moving to OPA's server mode at scale) would not require any change to this card, only to `tech-stack.md`.
 
 ## 5. Sandboxing — Discharging Card 02 §4/§8
 

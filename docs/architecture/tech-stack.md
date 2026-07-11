@@ -1,6 +1,7 @@
 # Tech Stack
 
-**Status:** 1.0 (Draft) — pending review/approval, same convention as the other Stage 7 artifacts.
+**Status:** 2.0 (Approved)
+**Changelog:** Decision #7 — added clarifying sentence distinguishing the logical Policy Authority role (Card 06) from its OPA WASM-embedded implementation, cross-referencing Card 06 §4's new terminology clarification. Patch 2, Stage 10 pre-freeze.
 
 **Purpose:** The canonical record of *which specific technology* satisfies each card's architectural requirement, and *why*. Cards 01-07 define what's required; this file decides what's used. No requirement is re-derived here — every choice cites the card/section it satisfies. This is the single source of truth for technology decisions — README's Tech Stack section and the Master Plan's header summarize this file, they do not compete with it.
 
@@ -112,7 +113,7 @@ Every decision below is evaluated against this shared set of principles, rather 
 
 **Satisfies:** Card 06 §4 (ABAC+JIT authorization), §20 (Policy Server failure mode), §21 (Policy Server integrity — policies as signed, versioned artifacts).
 
-**Decision:** OPA, compiled to WASM and evaluated in-process — not a custom Python authorization module, and not OPA's server mode.
+**Decision:** OPA, compiled to WASM and evaluated in-process — not a custom Python authorization module, and not OPA's server mode. This is the implementation of the **logical Policy Authority** Card 06 describes — "Policy Server" in the cards is the architectural role, not a claim that a standalone service process runs; see Card 06 §4's terminology clarification.
 
 **Rationale:** a custom Python module was the initial default, reconsidered on security grounds — a bug in general-purpose application code can more easily become an authorization bypass than a bug in a narrowly-scoped, dedicated policy-evaluation engine. OPA has real production pedigree (Kubernetes admission control, Envoy, Istio) and ships its own policy-unit-testing tooling, extending Card 07's spec-driven discipline to policies themselves. Server mode rejected to avoid a second running service at solo scale.
 
