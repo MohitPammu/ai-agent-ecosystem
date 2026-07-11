@@ -182,6 +182,7 @@ These 5 implementation specs must be produced before the relevant `core/` compon
 | S3 | Artifact Verification Manifest | Card 06 §15/§16 | `core/security/` runtime artifact loading |
 | S4 | LangGraph State Ownership, Reducers, and Concurrency | Card 01 §1/§2, Card 03 §4 | `core/harness/` state implementation |
 | S5 | Phase 1 Minimum Conformance Profile | Cards 01-07 collectively | Phase 1 start — defines what must be implemented before any portfolio project begins |
+| S6 | Observability and Audit Delivery Reliability Spec | Card 05 §5, Card 06 §11/§12 | `core/observability/` audit delivery implementation; AVS-CF-004 (compound failure scenario) cannot be precisely defined or executed without it — identifies where the fallback audit buffer lives, survival guarantees, capacity limits, retry/deduplication behavior, and reconciliation process |
 
 ---
 
