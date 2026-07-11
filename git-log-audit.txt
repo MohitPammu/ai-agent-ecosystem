@@ -1,0 +1,58 @@
+8bf9421 2026-07-11 patch-3: resolve lifecycle wording conflicts — ADR-003 shared-principles clarification, ADR-006 binary-lifecycle correction (Stage 10 pre-freeze)
+273104a 2026-07-11 patch-2: resolve terminology defects — Six/Seven principles, Layer 4 wording, executable/runtime-loadable, Policy Authority clarification (Stage 10 pre-freeze)
+03fced2 2026-07-10 patch-1: resolve all artifact status discrepancies — AGENTS.md, verification spec, model-routing-table (Stage 10 pre-freeze)
+b1077df 2026-07-10 patch-1: resolve artifact status discrepancies — AGENTS.md and verification spec (Stage 10 pre-freeze)
+7cff99d 2026-07-10 0.14 governance: Stage 10 complete — internal/external re-scores + reconciliation (FREEZE-READY-WITH-MINOR-PATCHES)
+cd66192 2026-07-10 0.0 master-plan: add 6 deferred/planned items from technology research pass (Playwright MCP, Firecrawl MCP, Perplexity MCP, LLM Council, Graphify, gstack /cso)
+d3c8e1c 2026-07-10 0.0 master-plan: add 5 deferred/planned items from technology research pass (Playwright MCP, Firecrawl MCP, Perplexity MCP, LLM Council, Graphify)
+d685cd8 2026-07-10 0.15 governance: freeze architecture-verification-specification.md, Stage 9 complete
+dcdb101 2026-07-03 0.0 readme: fix stale Closure Plan stage count in governance tree comment
+b643357 2026-07-03 0.0 readme: reflect Stage 8 completion, add adr/ to governance tree
+d3893eb 2026-07-03 0.0 master-plan: add 3 Obsidian deferred items (local vault, obsidian-skills, Publish post-revenue)
+072d225 2026-07-02 0.0 master-plan: delete resolved deferred items (implementation_reference, related_adr) per lifecycle rule
+6d9b428 2026-07-02 0.12 architecture: agent-contract-template.md v2.0 — resolve 2 deferred items (related_adr field, implementation_reference clarification)
+7949296 2026-07-02 0.6 governance: Card 06 topic index (v4.0) + 7 ADRs — Closure Plan Stage 8 complete
+69adcdc 2026-06-28 0.0 readme: reflect Stage 7 completion (was stale, said in-progress)
+f0cb0f5 2026-06-28 0.0 governance: close Closure Plan Stage 7 (all 4 artifacts complete), fix 2 staleness issues
+56d6c1d 2026-06-28 0.0 readme+master-plan: resolve LangSmith/OpenTelemetry duplication, point to tech-stack.md
+699348a 2026-06-28 0.8 architecture: finalize tech-stack.md 1.0 (Closure Plan Stage 7, Action 4 — final Stage 7 artifact)
+f58cc6b 2026-06-28 0.0 master-plan: log long-term vision (personal-use applications, not platform commercialization)
+734b5a8 2026-06-28 Merge branch 'main' of https://github.com/MohitPammu/ai-agent-ecosystem
+d63340a 2026-06-28 0.0 repo: harden .gitignore for secrets, confirm secret scanning enabled, defer branch protection to Phase 1+
+2ef06ed 2026-06-28 Update .gitignore
+42f6d89 2026-06-27 0.0 governance: sharpen third matrix row for traceability (Classification-Aware Model Routing)
+9dd5305 2026-06-27 0.0 governance: correct second stale matrix row (Provider Approval Metadata Schema canonical owner)
+2d3db9c 2026-06-27 0.7 reference-card: Card 07 v2.0 — §11 corrected to pointer, post-Stage-7 follow-up
+af642d2 2026-06-27 0.0 master-plan: correct status table for 0.9/0.10/0.12, strengthen Working Principle #5
+e9868f0 2026-06-27 0.0 governance+master-plan: log model-routing-table.md completion in matrix, add Phase 5+ compliance deferred items
+f00c79f 2026-06-27 0.9 architecture: freeze model-routing-table.md 1.0 (Closure Plan Stage 7, Action 3)
+5b0e618 2026-06-27 0.0 master-plan: add Working Principle #8, end-of-phase accuracy/consistency scan
+74ad6f1 2026-06-27 0.0 readme+matrix: correct Closure Plan stage count (9→10), fix matrix Card 06 §39→§3 citation error
+e64c18e 2026-06-27 0.0 master-plan: correct file 0.11 status table entry (README.md APPROVED)
+837038e 2026-06-27 0.0 master-plan: schedule Phase 0→1 transition research pass, defer further platform-docs scanning
+d18a905 2026-06-27 0.1/0.3/0.0 reference-cards+master-plan: LangGraph checkpointer note (Card 01 v4.0), tool_result routing note (Card 03 v5.0), 3 deferred items from guardrails docs scan
+0c9d33d 2026-06-27 0.0 master-plan: reorganize Deferred list into phase groups with Status tracking, add 6 items from Claude Platform docs scan
+4e48e0c 2026-06-27 0.0 readme: reflect Closure Plan Stage 1-6 completion and Stage 7 progress
+fa4e102 2026-06-27 0.10 architecture: freeze AGENTS.md v1.0 (Closure Plan Stage 7, Action 2)
+6f7375d 2026-06-26 0.0 governance: log Agent Contract Template completion, re-sort Polish/Deferred section (Closure Plan Stage 7, Action 1)
+c3c887f 2026-06-26 0.12 architecture: agent-contract-template.md, production-grade revision (Closure Plan Stage 7, Action 1)
+03c1c8d 2026-06-26 0.1/0.2/0.3/0.4/0.5 reference-cards: close blast-radius gaps (Closure Plan Stage 6)
+c54a1f3 2026-06-26 0.3/0.6 reference-cards: operationalize untrusted-context-boundary mechanism (Closure Plan Stage 5)
+ad72de2 2026-06-26 0.2/0.4/0.6/0.3 reference-cards: document reconciled anti-bloat decisions (Closure Plan Stage 4)
+94c9e7b 2026-06-26 0.1 reference-card: Card 01 v2.0 — fix stale observability field (Closure Plan Stage 3)
+178660e 2026-06-26 0.0 master-plan: log Closure Plan Stage 2 completion, update directory structure
+f700613 2026-06-26 0.0 governance: create architecture-traceability-matrix.md (Closure Plan Stage 2)
+2842471 2026-06-26 0.0 master-plan: log Closure Plan Stage 1 audit results (corrects stale Tier 3/4 tracking)
+890ad03 2026-06-26 Clean up Project setup documentation language — direct and intentional, not discovery-toned
+11d5015 2026-06-26 Add per-card version headers (1.0) to all 7 reference cards; formalize versioning convention in master plan (Working Principle #7) ahead of Closure Plan edits
+5218ab9 2026-06-26 Update README directory structure to reflect docs/specs/ and docs/governance/ additions
+72d6710 2026-06-26 0.14 docs/governance: organize v1 cohesion review cycle (2 independent reviews + synthesis + reconciliation) into versioned structure; add 10-stage Phase 0 Closure Plan; update master plan tracking (file 0.14 → IN REVIEW)
+b53075b 2026-06-25 0.7 docs/reference: approved Card 07 (Spec-Driven Production); 0.13 docs/governance: freeze Ecosystem Cohesion Review Rubric v1.0 — all 7 reference cards now approved, Phase 0 cohesion-review gate remains open
+52671a2 2026-06-25 0.6 docs/reference: approved Card 06 (Security & Governance) after three review cycles — 7-pillar architecture, risk tiers, Permission Model, sandboxing, Policy Server integrity, instruction-artifact signing, classification inheritance, hardened break-glass; closes every forward-reference from Cards 01-05
+e996cf7 2026-06-25 0.5 docs/reference: approved Card 05 (Quality & Evaluation) — close failure taxonomy gap, fix observability/evaluation schema leak, tighten HITL unification wording, discharge Card 04 skill-certification dependency
+f13a530 2026-06-25 0.4 docs/reference: approved Card 04 (Skills Framework) — add Skill Registry, promotion lifecycle, prompt-template boundary; update master plan with editorial/review-strategy notes
+e1c02df 2026-06-25 Add Polish/Deferred Enhancements section to master plan (architecture diagram, docs site)
+86d8000 2026-06-25 Bump GitHub Actions to v6 to resolve Node.js 20 deprecation warning
+87540f7 2026-06-25 Add CI workflow, README badges, CONTRIBUTING guide, and issue template
+b65f7e6 2026-06-25 Add README and MIT license
+21d3fb8 2026-06-25 0.1-0.3 docs/reference: approved Cards 01-03 (architecture/taxonomy, tools/MCP, context/memory); add master execution plan and session prompt guide
