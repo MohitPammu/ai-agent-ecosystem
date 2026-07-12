@@ -200,9 +200,9 @@ Not yet selected — deliberately, not by oversight. Full "why deferred / when t
 
 | Field | Value |
 |---|---|
-| **Status** | 1.0 (Draft) |
-| **Approved by** | _pending_ |
-| **Approval date** | _pending_ |
+| **Status** | 2.0 (Approved) |
+| **Approved by** | Mohit Pammu |
+| **Approval date** | 2026-07-11 |
 
 **Versioning note:** follows the same convention as Cards 01-07 and the other Stage 7 artifacts — version increments by one integer per substantive edit, with a one-line changelog added at the point of each edit, once approved.
 
