@@ -16,7 +16,7 @@ This is also a deliberate exercise in **spec-driven, governance-first engineerin
 
 ## Architecture Philosophy
 
-The ecosystem is designed around a **Runtime Stack** — a strict dependency hierarchy that keeps every layer's responsibilities cleanly separated:
+The ecosystem is designed around a **Runtime Stack** — an authority and ownership hierarchy that keeps every layer's responsibilities cleanly separated. It governs which layer owns and enforces each concern; runtime events and requests may flow bidirectionally through named interfaces:
 
 ```
 Agent Contract
@@ -64,14 +64,14 @@ Each project repo depends on this one for its core agent infrastructure and cons
 
 ```
 ai-agent-ecosystem/
-├── AGENTS.md               # Master ecosystem specification — signed instruction artifact, v1.0 (Closure Plan Stage 7)
+├── AGENTS.md               # Master ecosystem specification — signed instruction artifact, v3.0 (Closure Plan Stage 7, Stage 10 patches)
 ├── docs/
 │   ├── reference/          # Distilled architecture reference cards (the knowledge base) — all 7 APPROVED
 │   ├── architecture/       # All 3 architecture artifacts complete (Stage 7): agent-contract-template.md, model-routing-table.md, tech-stack.md
 │   ├── specs/              # BDD-style specs for core components, written before code (Phase 1+)
 │   └── governance/         # Review/QA artifacts — emerged organically during Phase 0, not originally planned
 │       ├── ecosystem-cohesion-review-rubric.md         # Frozen v1.0 — reusable beyond this project
-│       ├── PHASE-0-CLOSURE-PLAN.md                     # Complete — all 10 stages done, Phase 0 frozen at v0.1.0-phase0-freeze
+│       ├── PHASE-0-CLOSURE-PLAN.md                     # Complete — all 10 stages done, exit criteria met, freeze tag pending
 │       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2) — living document, updated
  every stage
 │       ├── architecture-verification-specification.md  # Post-implementation test plan — 38 scenarios (Closure Plan Stage 9, complete, 1.0 Approved)
@@ -105,7 +105,7 @@ Full rationale documented in `docs/architecture/tech-stack.md`.
 
 ## Build Status
 
-**Phase 0 is now complete.** All 10 Closure Plan stages are done — the architecture has been reviewed, corrected, and verified by dual independent reviews (internal + cold-read external), producing a reconciled FREEZE-READY-WITH-MINOR-PATCHES verdict. All 5 pre-freeze patches have been applied and verified. The Phase 0 freeze tag (`v0.1.0-phase0-freeze`) marks the architecture as frozen. Phase 1 (Core Infrastructure) begins next — building `core/harness/`, `core/memory/`, `core/security/`, `core/evaluation/`, and `core/observability/` against the 6 mandatory pre-build specs (S1-S6) before the first portfolio project implementation begins.
+**Phase 0 exit criteria are complete.** All 10 Closure Plan stages are done — the architecture has been reviewed, corrected, and verified by dual independent reviews (internal + cold-read external), producing a reconciled FREEZE-READY-WITH-MINOR-PATCHES verdict. All 5 pre-freeze patches have been applied and verified. The canonical frozen release will be identified by tag `v0.1.0-phase0-freeze`, pending final tag creation. Phase 1 (Core Infrastructure) begins next — building `core/harness/`, `core/memory/`, `core/security/`, `core/evaluation/`, and `core/observability/` against the 6 mandatory pre-build specs (S1-S6) before the first portfolio project implementation begins.
 
 See `00-MASTER-EXECUTION-PLAN.md` for the complete phase-by-phase roadmap, current status of every component, and a running progress log of design decisions.
 
