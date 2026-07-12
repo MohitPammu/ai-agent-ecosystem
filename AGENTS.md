@@ -85,6 +85,6 @@ This file does not redefine, restate, or summarize-in-a-way-that-could-drift any
 
 | Field | Value |
 |---|---|
-| **Status** | 1.0 (Approved) |
+| **Status** | 3.0 (Approved) |
 | **Approved by** | Mohit Pammu |
-| **Approval date** | 2026-07-10 |
+| **Approval date** | 2026-07-11 |
