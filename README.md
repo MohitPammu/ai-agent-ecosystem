@@ -71,9 +71,8 @@ ai-agent-ecosystem/
 │   ├── specs/              # BDD-style specs for core components, written before code (Phase 1+)
 │   └── governance/         # Review/QA artifacts — emerged organically during Phase 0, not originally planned
 │       ├── ecosystem-cohesion-review-rubric.md         # Frozen v1.0 — reusable beyond this project
-│       ├── PHASE-0-CLOSURE-PLAN.md                     # Complete — all 10 stages done, exit criteria met, freeze tag pending
-│       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2) — living document, updated
- every stage
+│       ├── PHASE-0-CLOSURE-PLAN.md                     # Complete — all 10 stages done, Phase 0 frozen at v0.1.0-phase0-freeze
+│       ├── architecture-traceability-matrix.md         # Concept → owner → references (Closure Plan Stage 2) — living document, updated every stage
 │       ├── architecture-verification-specification.md  # Post-implementation test plan — 38 scenarios (Closure Plan Stage 9, complete, 1.0 Approved)
 │       ├── adr/                                        # Architecture Decision Records — ADR-001 through ADR-007 (Closure Plan Stage 8, complete)
 │       └── cohesion-reviews/v1/                        # Versioned historical review snapshot
@@ -105,7 +104,7 @@ Full rationale documented in `docs/architecture/tech-stack.md`.
 
 ## Build Status
 
-**Phase 0 exit criteria are complete.** All 10 Closure Plan stages are done — the architecture has been reviewed, corrected, and verified by dual independent reviews (internal + cold-read external), producing a reconciled FREEZE-READY-WITH-MINOR-PATCHES verdict. All 5 pre-freeze patches have been applied and verified. The canonical frozen release will be identified by tag `v0.1.0-phase0-freeze`, pending final tag creation. Phase 1 (Core Infrastructure) begins next — building `core/harness/`, `core/memory/`, `core/security/`, `core/evaluation/`, and `core/observability/` against the 6 mandatory pre-build specs (S1-S6) before the first portfolio project implementation begins.
+**Phase 0 is frozen at tag `v0.1.0-phase0-freeze`** (commit `106a70f`). All 10 Closure Plan stages are done — the architecture has been reviewed, corrected, and verified by dual independent reviews (internal + cold-read external), producing a reconciled FREEZE-READY-WITH-MINOR-PATCHES verdict. All 5 pre-freeze patches have been applied and verified, followed by a Working Principle #8 pre-tag consistency sweep (7 commits) that corrected discrepancies the patches themselves had missed. Phase 1 (Core Infrastructure) begins next — building `core/harness/`, `core/memory/`, `core/security/`, `core/evaluation/`, and `core/observability/` against the 6 mandatory pre-build specs (S1-S6) before the first portfolio project implementation begins.
 
 See `00-MASTER-EXECUTION-PLAN.md` for the complete phase-by-phase roadmap, current status of every component, and a running progress log of design decisions.
 

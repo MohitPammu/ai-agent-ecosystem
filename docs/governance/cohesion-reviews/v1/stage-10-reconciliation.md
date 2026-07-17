@@ -229,7 +229,7 @@ To be added to Card 03 §4 or tech-stack.md as an explicit note:
 
 ## Future Validation Plan — Reconciled
 
-**Existing scenarios (architecture-verification-specification.md):** 24 functional + 4 performance scenarios already documented. Re-labeled with stable IDs per Patch 5. See spec directly.
+**Existing scenarios (architecture-verification-specification.md) at Patch 5 start:** 24 functional + 4 performance scenarios already documented. Re-labeled with stable IDs per Patch 5. See spec directly. **Final total after Patch 5's additions below: 38** (29 functional + 4 performance + 5 compound-failure) — see Coverage Matrix in the spec itself for the authoritative count.
 
 **New scenarios added by Patch 5:**
 
@@ -285,7 +285,7 @@ Phase 0 is not declared closed until every item below is checked. This checklist
 - [x] README Build Status updated to reflect Stages 1-10 complete
 - [x] Status table file 0.14 flipped to `APPROVED` (cohesion review cycle closes)
 - [x] All three Stage 10 documents committed: internal re-score, external re-score, this reconciliation
-- [ ] Freeze tag created: `git tag -a v0.1.0-phase0-freeze -m "Phase 0 architecture freeze"`
+- [x] Freeze tag created: `v0.1.0-phase0-freeze`, resolves to commit `106a70f` (tip of `main` at time of tagging)
 
 ---
 
