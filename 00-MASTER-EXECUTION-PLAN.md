@@ -137,22 +137,83 @@ Full rationale for this structure was established in our architecture discussion
 
 ## PHASE 1 — Core Infrastructure (The Factory)
 
-**Goal:** Build the parts that never change across projects. This is the highest-leverage phase — flaws here propagate into all three projects. Housekeeping items carried over from Card 03's review cycle, to be addressed during this phase rather than pre-specified in the card: (1) per-type Memory Contracts (Card 03 §11) get drafted during 1.5/1.6, not before; (2) default context budget allocations (Card 03 §9) need concrete numbers (e.g., system/instructions reserved, history 20-30%, retrieved memory 20-30%, tool outputs bounded per tool, completion reserve always preserved) — defined at implementation time; (3) verification_status state-transition rules (who can mark verified/contested, can contested memory be injected) are Card 05/06 territory, consumed by Card 03's implementation once defined. Card 01 should also receive a brief terminology correction noting Card 03 renamed "structured state" to "Structured Records" to avoid colliding with Card 01's own `state` definition.
+**Goal:** Build the parts that never change across projects. This is the highest-leverage phase — flaws here propagate into all three projects. Housekeeping items carried over from Card 03's review cycle, to be addressed during this phase rather than pre-specified in the card: (1) per-type Memory Contracts (Card 03 §11) get drafted during 1.14/1.15, not before; (2) default context budget allocations (Card 03 §9) need concrete numbers (e.g., system/instructions reserved, history 20-30%, retrieved memory 20-30%, tool outputs bounded per tool, completion reserve always preserved) — defined at implementation time; (3) verification_status state-transition rules (who can mark verified/contested, can contested memory be injected) are Card 05/06 territory, consumed by Card 03's implementation once defined. Card 01 should also receive a brief terminology correction noting Card 03 renamed "structured state" to "Structured Records" to avoid colliding with Card 01's own `state` definition.
 
-| # | File/Component | Purpose | Status |
-|---|---|---|---|
-| 1.1 | `docs/specs/orchestrator-spec.md` | BDD spec for the orchestrator agent | NOT STARTED |
-| 1.2 | `core/orchestrator/` | Orchestrator implementation (LangGraph) | NOT STARTED |
-| 1.3 | `docs/specs/harness-spec.md` | BDD spec for the agent harness (state, tools, feedback loops) | NOT STARTED |
-| 1.4 | `core/harness/` | Harness implementation | NOT STARTED |
-| 1.5 | `docs/specs/memory-spec.md` | BDD spec for memory system (working/episodic/semantic/procedural/preference/structured-records) | NOT STARTED |
-| 1.6 | `core/memory/` | Memory implementation (local vector DB + PostgreSQL + structured stores, per Card 03) | NOT STARTED |
-| 1.7 | `docs/specs/observability-spec.md` | BDD spec for OpenTelemetry logging (session/think/tool spans) | NOT STARTED |
-| 1.8 | `core/observability/` | Observability implementation | NOT STARTED |
-| 1.9 | `docs/specs/evaluation-harness-spec.md` | BDD spec for the 7-dimension evaluation pipeline | NOT STARTED |
-| 1.10 | `core/evaluation/` | Evaluation harness implementation | NOT STARTED |
+**Build order rationale (2026-07-13 revision):** The original 1.1-1.10 sequence predated the Phase 0 cohesion review and never incorporated the 6 Mandatory Pre-Build Specs (S1-S6, defined in `docs/governance/cohesion-reviews/v1/stage-10-reconciliation.md`) or a `core/security/` line item at all. This sequence replaces it, ordered so each tier depends only on tiers above it. External review + Working Principle #8 cross-check against the frozen cards informed two scope decisions: Tool/Skill Registry work (Card 02 §5, Card 04 §6) is folded into 1.7/1.9 (security) and 1.11 (harness) as sub-deliverables rather than a standalone tier, per Card 02 §5's explicit instruction that it "does not need to be a separate database... a structured `.yaml` file is sufficient." A proposed Contract parsing/validation infrastructure workstream was evaluated and **not added** — no card, ADR, or template describes Contracts as needing a shared runtime parsing/validation service; they are human-approved documents each consuming module reads its own relevant fields from.
 
-**Exit criteria for Phase 1:** A "hello world" agent can run through the full loop (mission → scan → think → act → observe), log a complete trace, store and retrieve a memory, and pass a basic evaluation check — with zero project-specific code involved.
+### Tier 0 — Scope
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.1 | `docs/specs/S5-minimum-conformance-profile.md` | Phase 1 Minimum Conformance Profile — defines what must be implemented before any portfolio project begins | None | NOT STARTED |
+
+**Gate M1 (Runtime Foundation Scoped):** S5 approved and checked into governance.
+
+### Tier 1 — State Semantics
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.2 | `docs/specs/S4-langgraph-state-ownership.md` | LangGraph State Ownership, Reducers, and Concurrency spec | 1.1 | NOT STARTED |
+
+### Tier 2 — Observability Foundation
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.3 | `docs/specs/S6-observability-audit-reliability.md` | Observability and Audit Delivery Reliability Spec — fallback audit buffer, survival guarantees, capacity limits, retry/dedup, reconciliation; unblocks AVS-CF-004 | 1.1 | NOT STARTED |
+| 1.4 | `core/observability/` | Observability implementation — session/think/tool span logging | 1.3 | NOT STARTED |
+
+**Gate M2 (Observability Operational):** Session/think/tool spans logging; audit buffer survives a simulated fallback per S6.
+
+### Tier 3 — Security Foundation
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.5 | `docs/specs/S1-policy-bundle-distribution.md` | Policy Bundle Distribution and Activation spec | 1.1 | NOT STARTED |
+| 1.6 | `docs/specs/S2-agent-identity-credential-lifecycle.md` | Agent Identity, Signing Key, and JIT Credential Lifecycle spec | 1.5 | NOT STARTED |
+| 1.7 | `core/security/` — policy + identity | Policy Authority and identity/JIT credential implementation; includes Tool Registry (`core/tool-registry.yaml`) and Skill Registry (`core/skills-registry.yaml`) creation per Card 02 §5 / Card 04 §6 | 1.5, 1.6, 1.4 | NOT STARTED |
+| 1.8 | `docs/specs/S3-artifact-verification-manifest.md` | Artifact Verification Manifest spec | 1.6 | NOT STARTED |
+| 1.9 | `core/security/` — artifact verification | Runtime artifact-signing verification implementation | 1.8 | NOT STARTED |
+
+**Gate M3 (Security Operational):** Policy Authority operational; identity issuance functional; both Registries created and binding rule enforced; authorization audit confirmed via 1.4; relevant AVS scenarios (including AVS-CF-003) passing.
+
+### Tier 4 — Harness
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.10 | `docs/specs/harness-spec.md` | BDD spec for the agent harness (state, tools, feedback loops) | 1.2, 1.7, 1.4 | NOT STARTED |
+| 1.11 | `core/harness/` | Harness implementation; enforces Registry binding-rule checks at tool-call time | 1.10 | NOT STARTED |
+
+**Gate M4 (Harness Operational):** Tool calls authorized only via Registry + Security; state ownership rules (S4) enforced; traces logged.
+
+### Tier 5 — Orchestrator
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.12 | `docs/specs/orchestrator-spec.md` | BDD spec for the orchestrator agent | 1.11 | NOT STARTED |
+| 1.13 | `core/orchestrator/` | Orchestrator implementation (LangGraph) | 1.12 | NOT STARTED |
+
+**Gate M5 (Agent Execution):** A single agent can run mission → scan → think → act → observe through the orchestrator.
+
+### Tier 6 — Memory
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.14 | `docs/specs/memory-spec.md` | BDD spec for memory system (working/episodic/semantic/procedural/preference/structured-records) | 1.4, 1.11 | NOT STARTED |
+| 1.15 | `core/memory/` | Memory implementation (local vector DB + PostgreSQL + structured stores, per Card 03) | 1.14 | NOT STARTED |
+
+**Gate M6 (Memory Operational):** Structured Records written/retrieved through harness-mediated calls, audited via observability.
+
+### Tier 7 — Evaluation
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.16 | `docs/specs/evaluation-harness-spec.md` | BDD spec for the 7-dimension evaluation pipeline | 1.13, 1.11, 1.15, 1.4, 1.7 | NOT STARTED |
+| 1.17 | `core/evaluation/` | Evaluation harness implementation | 1.16 | NOT STARTED |
+
+**Gate M7 (Evaluation Operational):** 7-dimension evaluation pipeline functional against a live agent run.
+
+### Tier 8 — Architecture Verification & Compliance
+| # | File/Component | Purpose | Depends on | Status |
+|---|---|---|---|---|
+| 1.18 | `core/verification/` (or equivalent) | Architecture Verification Runner | 1.17 | NOT STARTED |
+| 1.19 | Execute Mandatory AVS Scenarios | Phase 1-applicable subset of the 38 AVS scenarios | 1.18 | NOT STARTED |
+| 1.20 | `docs/governance/phase-1-architecture-compliance-report.md` | Phase 1 Architecture Compliance Report | 1.19 | NOT STARTED |
+
+**Gate M8 (Phase 1 Complete):** Mandatory AVS scenarios pass; Compliance Report checked into governance; exit criteria satisfied.
+
+**Exit criteria for Phase 1 (held pending S5 — 1.1):** Current baseline, to be revised once S5 is drafted so exit criteria and S5's content don't diverge: A "hello world" agent can run through the full loop (mission → scan → think → act → observe), log a complete trace, store and retrieve a memory, and pass a basic evaluation check — with zero project-specific code involved.
 
 ---
 
@@ -367,7 +428,8 @@ Items that are genuinely worth doing but deliberately deferred to a better-timed
 
 | Date | Session Focus | Files Touched | Outcome |
 |---|---|---|---|
-| 2026-07-13 | Codified Working Principle #8 pre-tag sweep discipline into 4 new Working Principles (9-12) | `00-MASTER-EXECUTION-PLAN.md` | Formalized the file-by-file push-based workflow used throughout the freeze-tag consistency sweep: (9) every push pairs with its own Progress Log entry, with an explicit minor-bundling exception; (10) Claude verifies sync after every push via fresh pull/read, never by assumption — including the `git rev-list`/`git rev-parse` tag-verification pattern; (11) staleness audits must cover prose/narrative text, not just greppable structured fields, after a targeted grep missed the Patch 5 Action-block's stale scenario count; (12) speculative local edits that get discarded must be explicitly re-delivered, not assumed carried forward — the direct lesson from the Master Plan's own status-table/exit-criteria fix being lost between the scratch pass and the push-based workflow. Next: update `docs/governance/PROJECT-SPACE-SETUP.md`'s Custom Instructions to reference this workflow. |
+| 2026-07-17 | Phase 1 build order revised — S1-S6 integrated, core/security/ added, dependency-ordered tiers | `00-MASTER-EXECUTION-PLAN.md` | Replaced the original 1.1-1.10 sequence (pre-dated the Phase 0 cohesion review, never incorporated S1-S6 or a core/security/ line) with a 20-item, 9-tier sequence (1.1-1.20) ordered by actual dependency direction: scope (S5) → state semantics (S4) → observability → security (S1/S2/S3 + both Registries) → harness → orchestrator → memory → evaluation → architecture verification/compliance. Produced via external review + Working Principle #8 cross-check against the frozen cards before acceptance: Registry work confirmed in-scope for Phase 1 (Card 02 §5/Card 04 §6 explicitly place it in `core/`; AVS-CF-003 requires it exist) but folded into security/harness rows rather than made its own tier, per the cards' own instruction not to over-build it. A proposed Contract parsing/validation infrastructure workstream was evaluated and rejected — no card, ADR, or template supports it as a runtime service. Added 8 tier-completion gates (M1-M8) tied to AVS scenario passage. Exit criteria held at original wording pending S5 (1.1) being drafted, to avoid the two diverging. |
+| 2026-07-17 | Codified Working Principle #8 pre-tag sweep discipline into 4 new Working Principles (9-12) | `00-MASTER-EXECUTION-PLAN.md` | Formalized the file-by-file push-based workflow used throughout the freeze-tag consistency sweep: (9) every push pairs with its own Progress Log entry, with an explicit minor-bundling exception; (10) Claude verifies sync after every push via fresh pull/read, never by assumption — including the `git rev-list`/`git rev-parse` tag-verification pattern; (11) staleness audits must cover prose/narrative text, not just greppable structured fields, after a targeted grep missed the Patch 5 Action-block's stale scenario count; (12) speculative local edits that get discarded must be explicitly re-delivered, not assumed carried forward — the direct lesson from the Master Plan's own status-table/exit-criteria fix being lost between the scratch pass and the push-based workflow. Next: update `docs/governance/PROJECT-SPACE-SETUP.md`'s Custom Instructions to reference this workflow. |
 | 2026-07-12 | Phase 0 officially frozen — tag v0.1.0-phase0-freeze pushed and verified | `00-MASTER-EXECUTION-PLAN.md`, `README.md`, `docs/governance/cohesion-reviews/v1/stage-10-reconciliation.md` | `git tag -a v0.1.0-phase0-freeze` pushed to origin; confirmed via `git fetch --tags` that the tag resolves to commit `106a70f` (tip of main). Closes the Working Principle #8 pre-tag consistency sweep (7 commits, file 1/7 README through the Patch-5 Action-block supplemental fix) plus this post-tag batch. Post-tag batch also recovered a gap: the Master Plan's own status-table version labels (0.8, 0.10) and exit-criteria arithmetic (12+2→12+3) were fixed in an early local-only scratch pass before the push-based workflow began, then lost when that scratch clone was discarded, and never re-delivered as a diff — caught during final sync check when the exit-criteria line reappeared stale. Also checked exit-checklist box 288 (Freeze tag created) and clarified the Future Validation Plan's scenario-count language. Phase 0 is closed. Phase 1 begins next, gated on Mandatory Pre-Build Specs S1-S6. |
 | 2026-07-12 | Working Principle #8 pre-tag sweep, supplemental — Patch 5 Action block scenario count corrected | `docs/governance/cohesion-reviews/v1/stage-10-reconciliation.md` | User caught a target this sweep missed: the Patch 5 "Action" narrative (item 1) still described the original pre-execution scope — "Correct Coverage Matrix total from 18 to 28 (24 functional + 4 performance)" — even after the file-6/7 pass had already corrected the checkbox and Patch-complete summary lines nearby to the actual delivered 38 (29+4+5). Grep for checkbox lines (`- [ ]`) missed this prose block. Corrected to state 38 (29 functional + 4 performance + 5 compound-failure), with a note explaining the scope expanded from the original 28 target when items (4) and (6) — Card 07 process controls and §9 compound failures — were added during execution. No other prose (non-checkbox) blocks in this file found to still cite 18 or 28; confirmed via full-file re-grep. |
 | 2026-07-12 | Working Principle #8 pre-tag sweep, file 6/7 — Stage 10 exit checklist checked off | `docs/governance/cohesion-reviews/v1/stage-10-reconciliation.md` | Every checkbox in the exit checklist had remained unchecked despite the underlying work being verified done — a literal/narrated-state mismatch matching this project's own discipline of not trusting narration over artifact state. Independently re-verified each item true against the live repo (terminology greps, version headers, ADR changelogs, matrix cross-references, sign-off blocks) before checking it. Checked all items confirmed true. Left "Freeze tag created" unchecked — no tag exists (`git tag -l` confirmed empty). Corrected 2 items whose literal targets were stale relative to final delivered state: the AGENTS.md Status-line target (written when AGENTS.md was still 1.0, since bumped to 3.0 by Patches 2/4) and two Patch 5 scenario-count targets (written before Patch 5's later passes expanded 28→38 scenarios). This checklist is the actual pre-tag gate — all items but the tag itself are now clean. |
