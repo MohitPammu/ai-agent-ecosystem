@@ -2,19 +2,21 @@
 spec_id: S5
 title: Phase 1 Minimum Conformance Profile
 status: APPROVED
-version: 1.0
+version: 1.1
 approved_by: Mohit Pammu
 approval_date: 2026-07-18
+amended_date: 2026-07-18
+changelog_v1.1: gates field updated to match Master Plan's Tier 3-8 renumbering (Step 4, Circuit Breaker/S7 integration) — no content change, administrative sync only
 format: BDD/Gherkin hybrid Markdown+YAML (Card 07 §2)
 cites: [Card 01, Card 02, Card 03, Card 04, Card 05, Card 06, Card 07, ADR-007, tech-stack.md Decision #7]
 depends_on: [S7]
-gates: [1.2, 1.3, 1.5, 1.6, 1.7, 1.8, 1.9, 1.10, 1.11, 1.12, 1.13, 1.14, 1.15, 1.16, 1.17]
+gates: [1.2, 1.3, 1.5, 1.6, 1.7, 1.8, 1.9, 1.10, 1.11, 1.12, 1.13, 1.14, 1.15, 1.16, 1.17, 1.18, 1.19]
 source: docs/governance/cohesion-reviews/v1/stage-10-external-rescore.md (lines 330-347), stage-10-reconciliation.md (row 184, line 30)
 ---
 
 # S5 — Phase 1 Minimum Conformance Profile
 
-**Status:** 1.0 (Approved)
+**Status:** 1.1 (Approved) — amended 2026-07-18, gates renumbered to match Master Plan Tier 3-8 update, no content change
 
 ## 1. Purpose
 
