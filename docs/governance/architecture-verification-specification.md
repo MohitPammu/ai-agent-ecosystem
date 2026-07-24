@@ -1,6 +1,8 @@
 # Architecture Verification Specification
 
-**Status:** 1.0 (Approved) — planning artifact only. No scenario in this document is executed until Phase 1 infrastructure exists. This document is written now, at the end of Phase 0, so the verification plan is drawn from the final corrected architecture rather than reconstructed from scratch later under implementation pressure.
+**Status:** 1.1 (Approved) — planning artifact only. No scenario in this document is executed until Phase 1 infrastructure exists. This document is written now, at the end of Phase 0, so the verification plan is drawn from the final corrected architecture rather than reconstructed from scratch later under implementation pressure.
+
+**Changelog (v1.1):** AVS-SB-003 corrected to cite model-routing-table.md §2 (Data Classification Routing Rule), not §3 (Approval Status Values, an unrelated section) — wrong section number. AVS-MA-003 corrected to cite Card 05 §6's existing "Timeout failure" category rather than a "delegation-failure category" that doesn't exist in the table — a sub-agent failing to return a result within budget is a timeout by definition; no new taxonomy category warranted. Both found during a full citation walk of this document.
 
 **Purpose:** Discharges Synthesis B2 from `cohesion-reviews/v1/review-reconciliation.md`. Defines the full scenario catalog for verifying that the implemented architecture behaves as specified — one pass/fail criterion per scenario, traceable to the owning card/section. This is the spec the Phase 1+ test suite is built against, not a standalone test runner.
 
@@ -177,7 +179,7 @@ All scenarios in this Phase 0 document are currently **Planned** or **Blocked**.
 
 #### AVS-MA-003 — Coordinator Agent Delegation Failure
 **Trigger:** A Coordinator agent (Card 01 §6) delegates to a sub-agent that fails to return a result.
-**Expected:** The Coordinator's Failure Recovery Strategy (Agent Contract §11) determines the recovery outcome — Retry, Escalate to HITL, or Stop — per the delegation-failure category in its contract's taxonomy mapping (Card 05 §6).
+**Expected:** The Coordinator's Failure Recovery Strategy (Agent Contract §11) determines the recovery outcome — Retry, Escalate to HITL, or Stop — classified under Card 05 §6's existing "Timeout failure" category (a sub-agent failing to return within `max_runtime` is a timeout by definition; no separate delegation-failure category exists or is needed).
 **Pass criterion:** The Coordinator does not hang waiting for a result that won't arrive. Recovery fires within the declared `max_runtime` (Agent Contract §8). The delegation failure is logged in both the Coordinator's and sub-agent's trace records.
 **Execution:** `[PHASE 3+]`
 
@@ -199,7 +201,7 @@ All scenarios in this Phase 0 document are currently **Planned** or **Blocked**.
 
 #### AVS-SB-003 — Classification-Aware Model Routing — Sensitive Data
 **Trigger:** An agent assembles context containing sensitive-PII or regulated-financial data and initiates a model call.
-**Expected (Card 06 §26, model-routing-table.md §3):** Routing resolves to Ollama (local) regardless of task complexity — classification override wins per the routing table's Section 3.
+**Expected (Card 06 §26, model-routing-table.md §2):** Routing resolves to Ollama (local) regardless of task complexity — classification override wins per the routing table's Section 2 (Data Classification Routing Rule).
 **Pass criterion:** No model call for sensitive-classified context reaches a non-local provider. The routing decision is logged with the classification that triggered the override.
 **Execution:** `[PHASE 3+]` (requires actual project data classification to be in effect)
 

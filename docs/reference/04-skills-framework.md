@@ -1,7 +1,8 @@
 # Reference Card 04 — Agent Skills Framework
 
-**Card Version:** 4.0
-**Changelog:** §7 — "executable procedural (or reference) knowledge" corrected to "runtime-loadable procedural (or reference) knowledge" — the word "executable" contradicted §1's own definition of a Skill as instructional content, not a callable function. Patch 2, Stage 10 pre-freeze.
+**Card Version:** 5.0
+**Changelog (v5.0):** §6 "Alternative Architecture Considered" note — replaced stale "a simpler binary lifecycle" claim about Tools with a pointer to Card 02 §5's actual 9-stage lifecycle, matching the same correction already applied to Card 02 §5 itself (v5.0) — this was an independent mirrored copy of the same claim that the earlier fix never propagated to. Found during the AVS citation walk.
+**Changelog (v4.0):** §7 — "executable procedural (or reference) knowledge" corrected to "runtime-loadable procedural (or reference) knowledge" — the word "executable" contradicted §1's own definition of a Skill as instructional content, not a callable function. Patch 2, Stage 10 pre-freeze.
 **Changelog (v3.0):** §6 — added "Blast radius — whole-registry-file unavailability" statement, mirroring Card 02 §5's Tool Registry case. Closure Plan Stage 6.
 **Changelog (v2.0):** §6 — added "Alternative Architecture Considered" note documenting why the Skill Registry is kept separate from Card 02's Tool Registry, per Closure Plan Stage 4.
 
@@ -88,7 +89,7 @@ Registry entry fields (mirroring Card 02 §5's Tool Registry table):
 
 **Implementation note:** same as Card 02's Tool Registry — a structured `skills-registry.yaml` is sufficient at our scale; the discipline of treating it as the sole discovery mechanism is what matters, not the storage format.
 
-**Alternative Architecture Considered:** A unified Capability Registry (merging this Skill Registry with Card 02 §5's Tool Registry into one schema) was considered, given their structural field similarity. Rejected: a Skill is instructional content with no callable contract, promoted into existence via human-reviewed procedural-memory promotion (§8) rather than registered as a pre-built capability; a Tool is a callable function with a fixed input/output contract and a simpler binary lifecycle. Merging them would force one schema to serve two different governance semantics — procedural knowledge vs. executable capability. Kept separate, per the reconciled position in `cohesion-reviews/v1/review-reconciliation.md`.
+**Alternative Architecture Considered:** A unified Capability Registry (merging this Skill Registry with Card 02 §5's Tool Registry into one schema) was considered, given their structural field similarity. Rejected: a Skill is instructional content with no callable contract, promoted into existence via human-reviewed procedural-memory promotion (§8) rather than registered as a pre-built capability; a Tool is a callable function with a fixed input/output contract, moving through Card 02 §5's 9-stage lifecycle (Proposed → Designed → Security Reviewed → Built → Tested → Certified → Active → Deprecated → Retired) — not restated here, pointer only, per this card's own convention elsewhere. Merging them would force one schema to serve two different governance semantics — procedural knowledge vs. executable capability. Kept separate, per the reconciled position in `cohesion-reviews/v1/review-reconciliation.md`.
 
 **Blast radius — whole-registry-file unavailability:** identical failure mode to Card 02 §5's Tool Registry — if the Skill Registry file is unavailable, no skill is loadable system-wide (binding rule condition (1) cannot be evaluated), not just the one skill whose entry might be corrupted. Agents continue operating with whatever Skills were already loaded into the current turn's context prior to the failure; no new Skill loads until the Registry is restored. Treated as a Tier 5 incident, same discipline as Card 02 §5's mirrored case.
 
