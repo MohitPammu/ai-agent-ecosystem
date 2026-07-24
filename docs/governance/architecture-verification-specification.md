@@ -1,7 +1,8 @@
 # Architecture Verification Specification
 
-**Status:** 1.1 (Approved) — planning artifact only. No scenario in this document is executed until Phase 1 infrastructure exists. This document is written now, at the end of Phase 0, so the verification plan is drawn from the final corrected architecture rather than reconstructed from scratch later under implementation pressure.
+**Status:** 1.2 (Approved) — planning artifact only. No scenario in this document is executed until Phase 1 infrastructure exists. This document is written now, at the end of Phase 0, so the verification plan is drawn from the final corrected architecture rather than reconstructed from scratch later under implementation pressure.
 
+**Changelog (v1.2):** AVS-MA-002's two dangling citations — "tech-stack.md, LangGraph reducer note" (never existed) and "Card 03 §4's Implementation Note" (§4 exists but doesn't discuss reducers) — repointed to S4 (LangGraph State Ownership, Reducers, and Concurrency), approved 2026-07-24, which is the spec both citations were always waiting for. Found during the full citation walk that also produced the v1.1 changelog.
 **Changelog (v1.1):** AVS-SB-003 corrected to cite model-routing-table.md §2 (Data Classification Routing Rule), not §3 (Approval Status Values, an unrelated section) — wrong section number. AVS-MA-003 corrected to cite Card 05 §6's existing "Timeout failure" category rather than a "delegation-failure category" that doesn't exist in the table — a sub-agent failing to return a result within budget is a timeout by definition; no new taxonomy category warranted. Both found during a full citation walk of this document.
 
 **Purpose:** Discharges Synthesis B2 from `cohesion-reviews/v1/review-reconciliation.md`. Defines the full scenario catalog for verifying that the implemented architecture behaves as specified — one pass/fail criterion per scenario, traceable to the owning card/section. This is the spec the Phase 1+ test suite is built against, not a standalone test runner.
@@ -173,8 +174,8 @@ All scenarios in this Phase 0 document are currently **Planned** or **Blocked**.
 
 #### AVS-MA-002 — Concurrent State Mutation Race Condition
 **Trigger:** Two agents simultaneously attempt to write to the same state key (Agent Contract §7's `state_owned` field).
-**Expected (tech-stack.md, LangGraph reducer note):** LangGraph's reducer function for that state key resolves the conflict deterministically — no silent overwrite, no exception that terminates the run.
-**Pass criterion:** The final state matches the state field's declared concurrency strategy and reducer semantics (Card 03 §4's Implementation Note — reducers are defined per state key in Agent Contract §7's `state_owned` declarations). No silent overwrite occurs outside the declared strategy. Repeated executions with the same ordered inputs produce the same result. No run terminates due to an unhandled concurrent-write exception.
+**Expected (S4 §3):** LangGraph's reducer function for that state key resolves the conflict deterministically — no silent overwrite, no exception that terminates the run.
+**Pass criterion:** The final state matches the reducer semantics S4 §3 defines for that key (deterministic, idempotent-safe, exactly one reducer per key). No silent overwrite occurs outside the declared reducer. Repeated executions with the same ordered inputs produce the same result. No run terminates due to an unhandled concurrent-write exception. Note: S4 itself only establishes and tests this under Phase 1's single-writer conditions (S4-003); this scenario is what actually exercises it under true multi-writer concurrency, which requires A2A and is why this remains Phase 3+.
 **Execution:** `[PHASE 3+]`
 
 #### AVS-MA-003 — Coordinator Agent Delegation Failure
