@@ -151,7 +151,7 @@ Full rationale for this structure was established in our architecture discussion
 ### Tier 1 — State Semantics
 | # | File/Component | Purpose | Depends on | Status |
 |---|---|---|---|---|
-| 1.2 | `docs/specs/S4-langgraph-state-ownership.md` | LangGraph State Ownership, Reducers, and Concurrency spec | 1.1 | NOT STARTED |
+| 1.2 | `docs/specs/S4-langgraph-state-ownership.md` | LangGraph State Ownership, Reducers, and Concurrency spec | 1.1 | APPROVED |
 
 ### Tier 2 — Observability Foundation
 | # | File/Component | Purpose | Depends on | Status |
