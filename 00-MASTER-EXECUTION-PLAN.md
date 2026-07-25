@@ -165,7 +165,7 @@ Full rationale for this structure was established in our architecture discussion
 | # | File/Component | Purpose | Depends on | Status |
 |---|---|---|---|---|
 | 1.5 | `docs/specs/S1-policy-bundle-distribution.md` | Policy Bundle Distribution and Activation spec | 1.1 | APPROVED |
-| 1.6 | `docs/specs/S2-agent-identity-credential-lifecycle.md` | Agent Identity, Signing Key, and JIT Credential Lifecycle spec | 1.5 | NOT STARTED |
+| 1.6 | `docs/specs/S2-agent-identity-credential-lifecycle.md` | Agent Identity, Signing Key, and JIT Credential Lifecycle spec | 1.5 | APPROVED |
 | 1.7 | `core/security/` — policy + identity | Policy Authority and identity/JIT credential implementation; includes Tool Registry (`core/tool-registry.yaml`) and Skill Registry (`core/skills-registry.yaml`) creation per Card 02 §5 / Card 04 §6 | 1.5, 1.6, 1.4 | NOT STARTED |
 | 1.8 | `docs/specs/S3-artifact-verification-manifest.md` | Artifact Verification Manifest spec | 1.6 | NOT STARTED |
 | 1.9 | `core/security/` — artifact verification | Runtime artifact-signing verification implementation | 1.8 | NOT STARTED |
